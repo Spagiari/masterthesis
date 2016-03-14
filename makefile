@@ -4,7 +4,7 @@ GS = gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite
 
 PAPER = masterthesis
 BIBFILE = biblproj.bib
-BUNDLE = masterthesis.pdf
+BUNDLE = sunspot.pdf
 
 all: $(PAPER).pdf
 	$(GS) -sOutputFile=$(BUNDLE) $(PAPER).pdf

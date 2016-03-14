@@ -2,7 +2,7 @@ TEX = pdflatex -interaction nonstopmode
 BIB = bibtex
 GS = gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite
 
-PAPER = masterthesis_
+PAPER = masterthesis
 BIBFILE = biblproj.bib
 BUNDLE = masterthesis.pdf
 
