@@ -1,0 +1,605 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{abnt-alf}
+\usepackage[top=3cm,bottom=2cm,left=3cm,right=2cm]{geometry}
+\usepackage{indentfirst}
+\usepackage{caption}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{multirow}
+\usepackage[section]{algorithm}
+\usepackage{algcompatible}
+\usepackage{gensymb}
+
+\pgfplotsset{width=15cm,compat=1.12}
+
+\usepgfplotslibrary{dateplot}
+
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{datavisualization}
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20,
+text width=4.5em, text badly centered, node distance=4cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20,
+text width=6em, text centered, rounded corners, minimum height=5em, node distance=3.5cm]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3.5cm,
+minimum height=2em]
+
+
+\DeclareCaptionType{mycapequ}[][List of equations]
+\captionsetup[mycapequ]{labelformat=empty}
+
+\begin{document}
+
+% CAPA
+\pagestyle{empty}
+\begin{center}
+    \large  \textbf{UNIVERSIDADE PRESBITERIANA MACKENZIE}
+    \large  \textbf{PROGRAMA DE PÓS-GRADUAÇÃO EM}\\
+    \large  \textbf{ENGENHARIA ELÉTRICA}\\
+    \vskip 2.0cm
+    \textbf{\large Adilson Eduardo Spagiari}\\
+    \vskip 4.0cm
+    \setlength{\baselineskip}{1.5\baselineskip}
+    \textbf{\large ESTUDO DAS CARACTERÍSTICAS DE MANCHAS SOLARES E SUA EVOLUÇÃO COM O CICLO DE ATIVIDADE DO SOL}\\
+    \vskip 3.5cm
+\end{center}
+\hfill{\vbox{\hsize=8.5cm\noindent\strut
++Dissertação de Mestrado apresentada ao\break
++Programa de Pós-Graduação em Engenharia\break
++Elétrica, como parte das Exigências para\break
++Obtenção do Grau de Mestre em Engenharia\break
++Elétrica, na Área de Concentração em\break
++Engenharia da Computação.}\\
+    \strut}
+\vskip 2.0cm
+\textbf{\normalsize Orientadora: Professora Doutora Adriana Benetti Marques Valio}
+
+\textbf{\normalsize Co-Orientador: Professor Doutor Mauricio Marengoni}\\
+\vskip 1.0cm
+\begin{center}
+    São Paulo\\
+    2016\\
+\end{center}
+
+% RESUMO
+\newpage
+\thispagestyle{plain}
+\pagenumbering{roman}
+\begin{center}
+    \large
+    \textbf{RESUMO}
+\end{center}
+\renewcommand{\baselinestretch}{0.6666666}
+As manchas solares são regiões mais frias, portanto mais escuras que surgem na superfície do Sol na região denominada Fotosfera,
+sendo esse fenômeno associado às mudanças no campo magnético solar e ao seu ciclo de atividade.
+As manchas solares são a manifestação mais notável da variação da atividade solar, sendo que o número de manchas varia ao longo dos anos,
+aumentando e diminuindo segundo um ciclo de aproximadamente 11 anos \cite{Hathaway2015}.
+Fenômenos relacionados à atividade solar podem causar desde interferências nas comunicações até a alteração na temperatura global \cite{colak2007, Ahluwalia2012}.
+
+São conhecidas algumas correlações entre as características físicas das manchas solares e o campo magnético.
+Em 1992 \cite{Kopp1992} observou uma relação não linear entre o campo magnético e o brilho da mancha solar.
+\cite{Rezaei2012,Tlatov2013} apontaram um relação entre a intensidade do campo magnético e a área da mancha solar,
+\cite{Penn2006,Rezaei2012} a estudaram ao longo de períodos preestabelecidos.
+
+Esse trabalho analisará as características das manchas solares durante o ciclo solar vinte e três utilizando técnicas de visão computacional.
+As imagens do telescópio espacial SOHO (\textit{Solar and Heliospheric Observatory}) serão utilizadas no processo de detecção das manchas solares e da extração de suas características.
+Ainda, serão analisados o fluxo de irradiância do Solar, número de manchas, quantiade de grupos, área, temperatura, brilho e o campo magnético médio das manchas solares.
+Com base nos dados obtidos, pretende-se verificar o comportamento dessas características e relações entre as mesmas ao longo dos períodos de mínimo e de máximo solar.
+\\[0.5cm]
+\begin{flushleft}
+    {\bf Palavras-chave:} {\it manchas solares, ciclo solar, processamento de imagem.}
+\end{flushleft}
+
+% SUMÁRIO
+\newpage
+\thispagestyle{empty}
+\tableofcontents
+
+% DESENVOLVIMENTO
+\newpage
+\pagestyle{plain}
+\pagenumbering{arabic}
+\renewcommand{\baselinestretch}{1.5}
+\normalsize
+\section{INTRODUÇÃO}
+As manchas solares foram observadas através de telescópios pela primeira vez por Galileu entre outros por volta de 1610 \cite{Eddy1976}. Deste então elas vêm sendo estudadas em detalhes, como a quantidade e a área das manchas observadas \cite{Hathaway2015}. Diversas técnicas de observação solar foram desenvolvidas. Em 1995 a NASA lançou em órbita o satélite SOHO com a missão de observar o Sol utilizando diferentes instrumentos, incluindo o MDI (\textit{Michelson Doppler Imager}), uma câmera CCD de 1024x1024 pixels, que observa o Sol no comprimento de onda visível e pode-se detectar as manchas solares sem a interferência da atmosfera terrestre \cite{Scherrer1991}.
+
+O estudo do Sol, em particular das manchas solares, possui muitas finalidades, porém a principal motivação decorre do fato das manchas solares serem a manifestação mais básica do campo magnético solar que está intrinsicamente ligada ao ciclo solar. Nos períodos de alta atividade solar, fenômenos como explosões solares e ejeção de massa coronal são frequentes e seus efeitos podem ocasionar inúmeros distúrbios, como alterações temporárias no campo magnético global e afetar sistemas terrestres, tais como linhas de transmissão de energia elétrica, sistema de telecomunicação, missões espaciais, satélites artificiais, dentre outras \cite{colak2007}. Porém, o ciclo de atividade solar de aproximadamente onze anos e as pequenas alterações na irradiância solar podem de uma forma menos imediatista influenciar o clima na Terra. Exemplo, o mínimo de Maunder foi um período de atividade solar praticamente nula que comprovadamente influenciou o clima terrestre \cite{Eddy1976, Ahluwalia2012}.
+
+Técnicas de visão computacional para segmentação automática de manchas solares e extração de suas características foram aplicadas nos últimos anos com altos níveis de correlação aos índices oficiais. Em 2003 \cite{zharkova2003} utilizou o algoritmo de detecção de borda de Canny para descobrir as manchas com base em seus contornos. Em 2005 \cite{zharkov2005} apresentou uma técnica de detecção de manchas solares utilizando o algoritmo de Sobbel, filtros morfológicos, binarização e um processo de pré-processamento de imagem para remoção de ruídos e atenuação do efeito do escurecimento do limbo solar. Em 2007 \cite{colak2007} argumentou sobre a utilização de dados obtidos por meio do emprego de técnicas de visão computacional para a previsão do clima espacial. No ano seguinte \cite{curto2008} apresentou um algoritmo baseado em técnicas de binarização e morfologia matemática. Em 2012 \cite{spagiari2012} desenvolveram um algoritimo inspirado no artigo de \cite{curto2008} para segmentação de manchas solares utilizando as imagens do observatório SOHO.
+
+Nos últimos anos em especial foram feitos diversos trabalhos com o objetivo de investigar o comportamento das características das manchas solares ao longo do tempo. Em 1992 \cite{Kopp1992} estudou a relação entre a intensidade do campo magnético e temperatura na região da mancha solar encontrando uma relação não linear entre a intensidade do campo magnético e o brilho da mancha solar. \cite{Penn2006} analisou cerca de 900 manchas solares no período entre 1998 e 2005, observando mudanças no campo magnético e na temperatura das manchas, os resultados obtidos reafirmaram os resultados obtidos por \cite{Kopp1992}.
+
+Em 2013 \cite{Javaraiah2013} investigou a variação da área das manchas solares. Ainda, \cite{Javaraiah2013} analisou dados de grupos manchas solares de 1874 até 2011 e descobriu indícios de uma variação mais abrangente na atividade solar, um possível ciclo de aproximadamente quarenta e quatro anos. No mesmo ano \cite{Toma2013} publicou o resultado do seu estudo da evolução das áreas das manchas solares sobre os ciclos solares 22 e 23 concluindo que houve uma diminuição significativa na área das manchas solares do ciclo 23 em comparação com o ciclo 22 e \cite{Toma2013} argumentou que essa diminuição pode ser indício de mudanças no dínamo solar.
+
+Neste trabalho serão empregadas as técnicas de visão computacional para a detecção e a extração automáticas de características de manchas solares em imagens do disco solar completo, bem como serão utilizadas as imagens do instrumento MDI do satélite SOHO em luz branca e magnetograma. Ainda, serão extraídas as características relevantes das manchas solares detectadas, a área, a temperatura, o brilho e a intensidade do campo magnético. Ressalta-se que a observação será realizada para todo o ciclo solar 23 e buscará aferir se há alterações nas correlações conhecidas entre essas características ao decorrer do ciclo solar. Neste sentido, \cite{Toma2013} afirma que o estudo das manchas solares e a sua relação com o ciclo solar são importantes, pois fornecem pistas sobre o funcionamento do dínamo solar, sendo este o mecanismo de geração do campo magnético do Sol.
+
+\section{JUSTIFICATIVA}
+O Sol é essencial para a existência de vida na Terra. Atualmente pesquisadores se esforçam para localizar estrelas com características próximas ao nosso Sol pelo universo, pois é um indício de um sistema estelar propício para o surgimento de vida. Entretanto, a atividade da nossa estrela na forma de ejeções ou explosões causam fenômenos que afetam não somente a Terra, mas todo sistema solar. Esse tipo de evento pode causar uma série de efeitos que vão desde interferência em sistemas de comunicação ao enfraquecimento no campo eletromagnético terrestre com diminuição momentaneamente à proteção contra radiação solar nociva \cite{colak2007}. Estudos realizados utilizando dados da atividade solar observados, por meio da contagens de manchas solares, comprovam que a atividade solar influencia o clima terrestre \cite{Ahluwalia2012, Eddy1976}
+
+Segundo \cite{Toma2013}, as manchas solares é uma das principais manifestações da atividade solar, que está intrinsicamente relacionada ao campo magnético solar. Nesse sentido,  \cite{Javaraiah2013} afirma que as manchas são regiões frias e, portanto, escuras na superfície do Sol, onde a concentração do campo magnético é de centenas a milhares de vezes o campo magnético global do Sol e, segundo \cite{Hathaway1994}, as manchas solares são um importante indicador da evolução da atividade solar durante o ciclo solar.
+
+O estudo de características das manchas solares ao longo do tempo pode revelar pistas do funcionamento do dínamo solar \cite{Javaraiah2013}. Em 1992 \cite{Kopp1992} observou uma relação linear entre o quadrado do campo magnético da região da umbra da mancha solar e a temperatura dessa região. Em 2006 \cite{Penn2006} observou novecentas manchas solares entre 1998 e 2005, analisando mudanças de campo magnético e temperatura ao longo do tempo e, com base nos dados observacionais, notou-se um aumento na temperatura na umbra das manchas analisadas e uma diminuição dos campos magnéticos dessas regiões.
+
+Este trabalho tem como objetivo estudar a temperatura e o campo magnético das manchas solares durante um ciclo solar completo e analisar se existe variações das relações de temperatura e campo magnético entre os períodos de mínima e de máxima atividade. Alterações da relação entre campo magnético solar e temperatura durante um mesmo ciclo solar será a percepção de um detalhe adicional do funcionamento do campo magnético solar e de seus mecanismos de geração.
+
+\section{FÍSICA SOLAR}
+
+\subsection{Atividade solar}
+A atividade solar pode ser descrita como a variação da energia emitida pelo Sol para o meio interplanetário. O Sol possui períodos de alta atividade e de baixa atividade e esse fenômeno apresenta um comportamento cíclico. O ciclo solar mais evidente é o ciclo solar de aproximadamente onze anos, onde o Sol parte de um período de baixa atividade e evolui para um período de alta atividade e depois volta a baixa atividade. Dados históricos sobre a atividade solar apresentam indícios de que existem outros ciclos mais longos ainda não totalmente compreendidos \cite{Hathaway1994, Javaraiah2013}. Há indícios que a atividade solar influencia diretamente no clima terrestre podendo causar alteração na temperatura média anual e também causar invernos mais rigorosos e verões mais quentes e longos \cite{Eddy1976, Ahluwalia2012} .
+
+O campo magnético solar influi diretamente na atividade solar, em períodos de baixa atividade as linhas de campo magnético solar apresentam a configuração de um dipolo e a distribuição dos campos magnéticos é homogênea em toda superfície solar, porém em períodos de máxima atividade os campos magnéticos ficam desordenados rearranjando-se localmente, formando regiões com altas concentrações de campo magnético que potencialmente podem liberar energia. Essas concentrações de campo magnético afetam o fluxo convectivo do plasma logo abaixo da fotosfera, camada visível mais baixa do Sol. Como o plasma tem o seu ciclo de convecção interrompido a atmosfera solar não é eficientemente aquecida, assim o plasma confinado na fotosfera pelos campos magnéticos presentes na região formam manchas escuras no disco solar. As regiões são escuras seguindo a lei de Stefan-Boltzmann onde o fluxo radiante de um corpo é descrito em função da temperatura do corpo, logo as regiões mais frias se apresentam menos brilhantes. As manchas solares apresentam duas regiões, uma região central mais escura e uma periférica mais clara denominadas umbra e penumbra \cite{Hathaway1994}.
+
+As manchas solares foram o primeiro fenômeno observado ligado à atividade solar. A observação contínua desse fenômeno comprovou que o Sol possui rotação diferencial, sendo que a região do equador solar gira um pouco mais rápido que os pólos. Essa peculiar forma de rotação do Sol causa lentamente a torção das linhas de campo magnético até o ponto onde as configurações originais não se sustentam e os rearranjos de campos magnéticos acontecem, causando assim o ciclo de atividade solar de aproximadamente onze anos.
+
+O número de manchas solares é o índice utilizado no estudo de longo prazo da atividade solar. \cite{Hathaway2015} definiu o número relativo de manchas solares, como sendo R = k(10g + s) onde, g é o número de grupos de manchas solares, s é o número total de pontos em todos os grupos no disco visível, e $k$ é um fator de correção de equipamento de observação \cite{svalgaard2010}. O índice de número de manchas solares normaliza a observação das manchas solares diminuindo os erros de observação e diferenças de resolução nos equipamentos óticos. Para tanto o número de Wolf impõe um peso maior aos grupos de manchas solares, pois manchas próximas potencialmente compartilham os mesmos campos magnéticos fazendo parte da mesma região ativa \cite{Hathaway2015}.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{sc.png}
+        \caption{Série histórica diaria da média da área das manchas solares do hemisfério do Sol visivel \cite{Hathaway2015}.}
+        \label{fig:sc}
+    \end{center}
+\end{figure}
+
+
+\subsection{Detecção automática de manchas solares}
+
+As manchas solares evoluem e se dissipam nas regiões ativas. Geralmente mais de uma mancha compartilham a mesma região ativa. Esse conglomerado de manchas ligado a uma mesma região ativa é chamado de grupo de manchas. Por fazerem parte de uma mesma região ativa sujeitas a mesma configuração de arranjo de campos magnéticos essas manchas compartilham características físicas tais como tempo de vida e localização espacial \cite{curto2008}. Para estimar corretamente o número de Wolf para um determinado dia de observação é necessário um método robusto de segmentação das áreas de interesse, as manchas solares, e um método igualmente confiável para se determinar os grupos de manchas.
+
+Nos últimos anos algumas técnicas de visão computacional foram aplicadas ao problema de detecção automática de manchas solares obtendo resultados satisfatórios. \cite{zharkov2005} utilizou técnicas de processamento de imagens para remover ruídos e detalhes sem interesse, após o pré-processamento utilizou o algoritmo de detecção de borda de Sobel para determinar os pontos candidatos a manchas solares. Depois da detecção de pontos candidatos o método de \cite{zharkov2005} utilizou binarização e filtragem morfológica para segmentação das manchas solares obtendo uma alta correlação com os dados do NOAA. \cite{colak2007} discutiram a classificação automática das manchas solares em tempo real para previsão de atividade solar. Outra abordagem foi de \cite{curto2008}, que utilizando imagens do observatório de Ebro apresentaram uma técnica utilizando morfologia matemática na tentativa de detectar todo o perímetro de padrões às vezes amorfos das manchas solares.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{mdi_mag.png}
+        \caption{Imagem do Sol em luz branca do telescópio soho instrumento MDI (direita) e o magnetograma (esquerda).}
+        \label{fig:mm}
+    \end{center}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{sunspot.png}
+        \caption{Imagem ampliada de uma região solar ativa.}
+        \label{fig:sunspot}
+    \end{center}
+\end{figure}
+
+\section{VISÃO COMPUTACIONAL}
+
+\subsubsection{Binarização de imagens}
+A binarização é uma técnica de processamento de imagens que pode ser aplicada com diversos objetivos, como segmentação de imagem, detecção de fundo e outros. Este método consiste em converter uma imagem em níveis de cinza para uma nova imagem de apenas duas cores branco e preto através da definição de um parâmetro de corte r. Assim para qualquer ponto T de uma imagem com valor de intensidade entre 0 e 255 é aplicada uma função de threshold que para T menor que r a saída é 0 e para T maior igual a r a saída é 1. Após aplicar a função de threshold para todos os pontos da imagem se tem uma imagem resultante com apenas 2 níveis de intensidade 0 e 1 \cite{gonzalez2010}.
+
+\subsubsection{Morfologia matemática}
+
+Em processamento digital de imagem a morfologia matemática é uma técnica baseada na teoria dos conjuntos possuindo duas operações básicas a erosão e dilatação que permitem diversas aplicações tais como segmentação, filtragem e realce. No contexto de segmentação de imagens a morfologia matemática pode ser aplicada de forma a extrair, realçar ou desprezar características de grupos de pixels com base em outro conjunto pré-definido de pixels chamado de elemento estruturante \cite{gonzalez2010}.
+
+No ambito da morfologia matemática as imagens são referidas como um conjunto de pixels.
+Exemplo, uma imagem binária os pixels brancos (ou pretos) é  por um conjunto de números inteiros da ordem de $Z^2$, cada elemento do conjunto representa o vetor posição de um pixel $(x,y)$.
+No caso de imagens em escala de cinza, de forma analoga ao exemplo anterior, é prepresentada por um conjunto de números inteiros da ordem de $Z^3$, cada elemento do conjunto representa o vetor posição e intensidade discreta de um pixel $(x,y,c)$.
+
+\paragraph{Elemento estruturante}
+
+Em morfologia matemática o conceito de elemento estruturante é fundamental, pois é a base para todas as operações morfologicas.
+Elemento estruturante é geralmente um pequeno conjunto de pixels ou subimagem utilizado para examinar uma imagem com o objetivo de realçar, preservar ou descartar características de interesse \cite{gonzalez2010}. A figura \ref{fig:ee} mostra exemplos de elementos estruturantes e dua representação na forma de matrizes.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{ee.png}
+        \caption{Acima exemplos de elementos estruturantes e abaixo a representação desses elementos estruturantes em matrizes. \cite{gonzalez2010}.}
+        \label{fig:ee}
+    \end{center}
+\end{figure}
+
+\paragraph{Erosão}
+
+Sendo uma imagem bidimensional definida como f(x,y) e b um elemento estruturante qualquer a erosão é descrita matematicamente pela equação (1). A erosão de um ponto (x,y) pode ser interpretada também como sendo o valor mínimo dentre seus vizinhos que pertencem ao elemento estruturante b fazendo com que padrões da imagem que não atendam o padrão imposto pelo elemento estruturante sejam diminuídos \cite{gonzalez2010}.
+
+\begin{mycapequ} [!ht]
+    \begin{equation}
+        \mathit{f}\theta\mathit{b}(\mathit{x,y}) = min\{\mathit{f(x+s,y+t)}\}
+    \end{equation}
+    \caption{Operação de erosão}
+\end{mycapequ}
+
+\paragraph{Dilatação}
+
+Sendo uma imagem bidimensional definida como f(x,y) e b um elemento estruturante qualquer a dilatação é descrita matematicamente pela equação (2). A dilatação de um ponto(x,y) pode ser interpretada também como sendo o valor máximo dentre seus vizinhos que pertencem ao elemento estruturante b fazendo com que padrões da imagem que não atendam o padrão imposto pelo elemento estruturante sejam expandidos para o padrão pretendido \cite{gonzalez2010}.
+
+\begin{mycapequ} [!ht]
+    \begin{equation}
+        \mathit{f}\theta\mathit{b}(\mathit{x,y}) = max\{\mathit{f(x+s,y+t)}\}
+    \end{equation}
+    \caption{Operação de dilatação}
+\end{mycapequ}
+
+\paragraph{Abertura}
+Descrita matematicamente pela equação (3) é a combinação da operação de erosão seguida da operação de dilatação utilizando o mesmo elemento estruturante. Resultando na suavização de bordas eliminando saliências finas e rompendo istmos, pois pequenas porções de pixels não compatíveis são suavemente diminuídas para se tornarem compatíveis ao padrão do elemento estruturante \cite{gonzalez2010}.
+
+\begin{mycapequ} [!ht]
+    \begin{equation}
+        \mathit{f}\circ\mathit{b} = \left(\mathit{f}\theta\mathit{b}\right)\Theta\mathit{b}
+    \end{equation}
+    \caption{Operação de abertura}
+\end{mycapequ}
+
+\paragraph{Fechamento}
+Descrito matematicamente pela equação (4) combina a operação de dilatação seguida da operação de erosão utilizando o mesmo elemento estruturante. Resultando no preenchimento de pequenas áreas descontinuas, elimina pequenos buracos e completa pequenas falhas no contorno, pois pequenas porções de pixels não compatíveis são suavemente expandidas para se tornarem compatíveis ao padrão do elemento estruturante \cite{gonzalez2010}.
+
+\begin{mycapequ} [!ht]
+    \begin{equation}
+        \mathit{f}\bullet\mathit{b} = \left(\mathit{f}\Theta\mathit{b}\right)\theta\mathit{b}
+    \end{equation}
+    \caption{Operação de fechamento}
+\end{mycapequ}
+
+\paragraph{Transformadas top-hat e bottom-hat}
+
+Geralmente são utilizadas na remoção de estruturas que se destacam de seu fundo com base no elemento estruturante. A top-hat atua sobre estruturas claras com fundo escuro, enquanto a bottom-hat atua sobre estruturas escuras com fundo claro. As equações (5) e (6) descrevem matemáticas das transformadas top-hat e bottom-hat respectivamente \cite{gonzalez2010}.
+
+\begin{mycapequ} [!ht]
+    \begin{equation}
+        \mathit{T(f)} =  \mathit{f-(f \circ b)}
+    \end{equation}
+    \caption{Transformada top-hat}
+\end{mycapequ}
+
+\begin{mycapequ} [!ht]
+    \begin{equation}
+        \mathit{B(f)} =  \mathit{f \bullet b -f}
+    \end{equation}
+    \caption{Transformada bottom-hat}
+\end{mycapequ}
+
+\subsubsection{Coordenadas heliográficas}
+
+A coordenada heliográfica é um sistema de coordenadas que descreve a posição de qualquer ponto da esfera solar utilizando latitude e longitude expressas em graus. Observando imagens do disco solar no contexto de visão computacional um ponto qualquer do disco solar é expresso em coordenadas x e y que podem ser convertidos para coordenadas heliográficas onde a latitude é obtida pela equação (7) e a longitude pela equação (8). Onde x e y são coordenadas da imagem e r é o raio solar em pixels \cite{Thompson2002}.
+
+Para a determinação dos grupos de manchas solares pode ser utilizado o critério de distância, pois a característica de proximidade espacial é um atributo físico compartilhado por manchas solares da mesma região ativa. Sendo assim é aceito e comprovado por amostras estatísticas que manchas com até 6 graus de distância umas das outras fazem parte do mesmo grupo \cite{curto2008}. A equação (9) apresenta um método para se mensurar a distância de dois pontos conhecidos em coordenadas heliográficas. Onde Lat1 e Lon1 são as coordenadas heliográficas do ponto 1 e Lat2 e Lon2 são as coordenadas heliográficas do ponto 2.
+
+\begin{mycapequ} [!ht]
+    \begin{equation}
+        Lat = arcsen\left(\frac{y}{r}\right)
+    \end{equation}
+    \caption{Latitude de um ponto}
+    \label{eq:lat}
+    \begin{equation}
+        Lon = arcsen\left(\frac{x}{\sqrt{r^2-y^2}}\right)
+    \end{equation}
+    \caption{Longitude de um ponto}
+    \label{eq:lon}
+    \begin{equation}
+        Lamb = arcsen(sen(Lat1) \times sen(Lat2)+cos(Lat1) \times cos(Lat2) \times cos(Lon2-Lon1))
+    \end{equation}
+    \caption{Distância entre dois pontos em uma esfera}
+\end{mycapequ}
+
+
+\section{METODOLOGIA}
+Este trabalho utilizará como dados de entrada imagens do instrumento MDI (\textit{Michelson Doppler Imager}) do satélite espacial SOHO (\textit{Solar and Heliospheric Observatory}). O MDI é equipado com um sensor CCD de 1024x1024 pixels possibilitando a realização de diversos tipos de observações, tendo como principais produtos a imagem do disco solar em luz branca (intensidade contínua) e o magnetograma, uma representação pictográfica da variação espacial da intensidade do campo magnético solar \cite{Scherrer1991}. Ambas as imagens têm suas séries históricas disponíveis no site do projeto SOHO em formato FITS (\textit{Flexible Image Transport System}), sendo este o formato utilizado na Astronomia para troca de imagens e conteúdos.
+
+Para a extração das informações pretendidas para um determinado dia será necessário o par de imagens luz visível e magnetograma. As imagens devem ser separadas pelo menor tempo possível, visto que as duas observações não ocorrem no mesmo instante. Na base de imagens do SOHO essas duas observações têm geralmente um intervalo de trinta segundos. A imagem em luz branca será convertida para o formato JPG para ser utilizada nos processos de visão computacional e sua original em formato FITS será utilizada como mídia de informação complementar, pois o formato FITS mantém informações importantes sobre o momento da observação bem como valor absoluto de intensidade dos pixels, diferente do formato JPG que guarda apenas o valor relativo de intensidade dos pixels. O magnetograma também é utilizado como uma mídia auxiliar de informação, delas são extraídos dados dos campos magnéticos das regiões das manchas.
+
+%Será construído um software utilizando a linguagem C++, a biblioteca  OpenCV \cite{opencv} e a biblioteca FitsTool para realizar a leitura do conjunto de imagens e aplicação de um algoritmo utilizando binarização e morfologia matemática como descrito por \cite{curto2008} ajustado para as imagens SOHO. O Software para cada conjunto de imagens extrairá intensidade média de fluxo luminoso do Sol no instante da observação, número de manchas solares, número de grupos de manchas solares, área das manchas solares, brilho médio das manchas solares, temperatura média das manchas solares e intensidade média do campo magnético na região das manchas. Como resultado final o software retornará um vetor com as características extraídas.
+
+Serão extraídos os indicadores usando amostras mensais ao longo de um ciclo solar completo.
+Os indicadores extraídos serão número de wolf, localização das manchas solares, área das manchas solares, intensidade relativa das manchas solares, temperatura da mancha solar,
+campo magnético médio das manchas solares e intensidade central do sol no instante da observação.
+Será utilizado o ciclo solar 23 que se estendeu de maio de 1996 até abril de 2008.
+O vetor de características de cada conjunto de imagens será extraído e armazenado em forma de série temporal, sendo a base resultante dividida em quatro partes para a análise.
+Cada parte representará uma etapa no ciclo solar. Primeira parte do início do ciclo solar até o começo do período de alta atividade solar, segunda parte do início do período de alta atividade até o ápice da atividade solar,
+terceira parte do declínio do ápice até o fim do período de alta atividade solar, quarta parte será o ponto de baixa atividade até o fim do ciclo solar vinte e três.
+As correlações conhecidas entre as características das manchas solares e o campo magnético solar serão analisadas em cada parte da base de dados e comparadas.
+
+\subsection{Número de Wolf}
+O Número de Wolf é calculado utilizando a equação \ref{eq:wolf}.
+O parametro $K$ representa a constante do observatório, o parâmetro $g$ é a quantidades de grupos e  $s$ representa a quantidade de manchas.
+Esse trabalho utiliza a constante $K$ atribuída ao satélite SOHO que é 1. O parâmetro g é obtido através do algoritmo de detecção de grupos descrito na figura \ref{fig:grou}.
+O parâmetro s é resultante do algoritmos de detecção de manchas solares descrito na figura \ref{fig:det}.
+
+\begin{mycapequ} [!ht]
+    \begin{equation}
+        \mathit{R = k(10g + s)}
+    \end{equation}
+    \caption{Número de Wolf}
+    \label{eq:wolf}
+\end{mycapequ}
+
+\subsection{Localização da manchas solar}
+A localização das manchas solares é resultado do algoritmo de detecção de manchas solares descrito na figura \ref{fig:det}.
+O algoritmo localiza na imagem JPG em luz branca do disco solar as manchas solares e todos os pixels que as compõem utilizando um algoritmo de detecção de blob.
+Após esse processo é computado o pixel central da mancha e sua referência x e y no mapa do bitmap é convertida para coordenadas heliográficas utilizando as equações \ref{eq:lat} e \ref{eq:lon}.
+
+\subsection{Intensidade central do Sol}
+A intensidade central do sol é obtida através da imagem em luz branca do disco solar no formato FITS.
+É realizada uma média simples dos pixels pertencentes ao retangulo $(x-5, y-5),(x+5, y+5)$ onde $x$ e $y$ são as condenadas do centro do disco solar obtidos no cabeçalho do arquivos FITS.
+
+\subsection{Área da mancha solar}
+A área da mancha solar é estimada combinando os dados da localização da mancha solar obtido no algoritmo de deteção de manchas solares mostrado na figura \ref{fig:det} e
+os parametros observação que estão armazenados no cabeçalho do arquivo da imagem do disco solar em luz branca no formato FITS.
+O calculo de área da mancha solar é realizado pela equação \ref{eq:area}. O parametro $p$ é o numero de pixels da mancha solar, $\theta$ é a escala nominal dos pixels em segundos de arco obtido no cabeçalho do arquivo FITS,
+$d$ é a distância do observador e $lat$ e $lon$ são respectivamentes a latitude e longitude da mancha solar em coordenadas heliográficas.
+
+\begin{mycapequ} [!ht]
+    \begin{equation}
+        \mathit{s = p\left (\frac{\frac{\theta}{3600}\frac{\pi}{180}}{cos(lat)cos(lon)} \right)}
+    \end{equation}
+    \caption{Área da mancha solar}
+    \label{eq:area}
+\end{mycapequ}
+
+\subsection{Intensidade da mancha solar}
+A intensidade da mancha solar é obtida através da média das intensidades dos pixels da mancha solar lidos do arquivo de imagem do disco solar em luz branca no formato FITS. Essa definição é formalizada na equação \ref{eq:int} onde $I$ é o conjunto de intensidade dos $p$ pixels que compoem a mancha solar.
+
+\begin{mycapequ} [!ht]
+    \begin{equation}
+        \mathit{\left (  \sum_{0}^{p} I_{p} \right )\frac{1}{p}}
+    \end{equation}
+    \caption{Intensidade da mancha solar}
+    \label{eq:int}
+\end{mycapequ}
+
+\subsection{Temperatura média da mancha solar}
+A temperatura média de uma determinada mancha solar é obtida através da equação \ref{eq:temp}. O parametro $h$ e $K_{b}$ são respectivamente as constantes de Planck e de Boltzmann,
+$T_{c}$ é a temperatura da fotosféra solar, $v$ é a frequência associada ao comprimento de onda de interesse, $f_{i}$ é a intensidade média da mancha dividido pela intensidade central da estrela.
+A equação \ref{eq:fre} mostra como o parametro $v$ é calculado sendo $c$ a constante da velocidade da luz no vácuo e $\lambda$ o comprimento de onda de interesse.
+
+\begin{mycapequ} [!ht]
+    \begin{equation}
+        \mathit{v = \frac{c}{\lambda}}
+    \end{equation}
+    \caption{Frequência associada}
+    \label{eq:fre}
+\end{mycapequ}
+
+\begin{mycapequ} [!ht]
+    \begin{equation}
+        \mathit{Tm = \frac{hv}{K_{b}} \left [ln\left ( 1 + \frac{e^{\frac{hv}{K_{b}T_{c}}} - 1}{f_{i}} \right ) \right ]^{-1}}
+    \end{equation}
+    \caption{Temperatura da mancha solar}
+    \label{eq:temp}
+\end{mycapequ}
+
+\subsection{Campo magnético da mancha solar}
+Para analisar o campo magnético de uma determinada mancha solar são obtido 3 valores o campo magnético médio, o campo magnético médio positivo e o campo magnético médio negativo.
+Para a leitura do campo magnético da mancha solar são utilizado os dados de posicão dos pixels pertencentes a mancha solar obtidos pelo algoritmo de detecção de manchas solares utilizado em conjunto com o
+magnetograma do disco solar no formato FITS. É importante que o magnetogama e a imagem em luz branca analizadas sejam separadas pelo menor intervalo de tempo possível.
+Este trabalho não utilizou conjunto de imagens com intervalos de observação maiores de dois minutos.
+No magnetograma em formato FITS o valor correspondente a cada pixel representa a intensidade do campo magnético na região.
+Para cada pixel do conjunto de pixels que compoem uma manchas solar é realizada a leitura do valor correspondente a esse pixel no magnetograma e assim realizada uma média de todos os pixles lidos,
+uma média de todos os pixels povitivos lidos e uma média de todos os pixels negativos lidos.
+
+\newpage
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tikzpicture}[node distance=6cm, auto]
+            \input Main.tex
+        \end{tikzpicture}
+        \caption{Fluxo principal de execução.}
+        \label{fig:net}
+    \end{center}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tikzpicture}[node distance=6cm, auto]
+            \input spotdetection.tex
+        \end{tikzpicture}
+        \caption{Algoritmo de detecção de manchas solares.}
+        \label{fig:det}
+    \end{center}
+\end{figure}
+
+\newpage
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tikzpicture}[node distance=6cm, auto]
+            \input groupdetection.tex
+        \end{tikzpicture}
+        \caption{Algoritmo de detecção de manchas solares.}
+        \label{fig:grou}
+    \end{center}
+\end{figure}
+
+\section{RESULTADOS}
+
+Este trabalho pretende verificar a evolução das relações entre as características das manchas solares durante um ciclo solar completo.
+Para detecção de manchas solares foi utilizado um algoritmo baseado em binarização e morfologia matemática inspirado no método utilizado por \cite{curto2008} adaptado para as imagens do observatório SOHO. Os resultados da detecção de manchas solares foram publicados em 2012 e parte deles podem ser analisados nas figuras \ref{fig:2001} e \ref{fig:2009} \cite{spagiari2012}.
+A figura \ref{fig:2001} compara o resultado de detecção de manchas solares em número de Wolf para o ano de 2001 com os resultados oficiais apresentados pelos institutos NOAA e SIDC.
+A Figura \ref{fig:2009} faz a mesma comparação para o ano de 2009.
+Os anos de 2001 e 2009 foram escolhidos pois representam períodos diferentes de ciclos solares diferentes.
+O ano de 2009 representa um período com baixa incidência de manchas solares e o ano de 2001 representa o período de transição para o período de máxima atividade solar.
+É importante para os resultados desse trabalho que o algoritmo tenha aplicabilidade robusta no decorrer de todo o ciclo solar.
+
+Observa-se através dos resultados que o algoritmo é muito robusto para períodos de maior atividade solar,
+porém se mostrou mais frágil em períodos de baixa atividade, detectando um pequeno número de falsos positivos.
+Observa-se também que os resultados obtidos em número de Wolf tiveram alta correlação com os números publicados pelos institutos NOAA e SIDC.
+Isso evidenciou como alternativa factível utilizar o método de segmentação de manchas solares baseado em binarização e morfologia matemática apresentado por este trabalho.
+
+\begin{figure}[!h]
+    \begin{center}
+        \begin{tikzpicture}
+            \input 2001_mackxnoaaxsidc.tex
+        \end{tikzpicture}
+        \caption{Comparação entre os resultados de detecção de manchas solares do ano de 2001.}
+        \label{fig:2001}
+    \end{center}
+\end{figure}
+
+\begin{figure}[!h]
+    \begin{center}
+        \begin{tikzpicture}
+            \input 2009_mackxnoaaxsidc.tex
+        \end{tikzpicture}
+        \caption{Comparação entre os resultados de detecção de manchas solares do ano de 2009.}
+        \label{fig:2009}
+    \end{center}
+\end{figure}
+
+Parte da produção desse trabalho é um programa chamado sunspot desenvolvido em C++ utilizando as bibliotecas C++ Standard, OpenCV \cite{opencv} e FitsTools.
+O programa implementa os algoritmos e metodologia descrita no capítulo anterior.
+Processando um conjunto de imagens de entrada e gerando uma base de dados com todas as manchas encontradas e suas características.
+Em 2013 \cite{Valio2013} utilizaram o sunspot para extrair os dados de manchas solares a partir de imagens do observatório SOHO das datas descritas na tabela \ref{table:ex2003}.
+A tabela \ref{table:re2003} descreve parte dos resultados gerados pelo programa.
+As informações extraídas foram úteis para compor um modelo de detecção de manchas estelares.
+
+O gráfico \ref{fig:mag} mostra a intensidade e o brilho relativo da mancha solar pelo seu campo magnético médio.
+Nota-se através desse gráfico que existe uma tendência de as manchas mais escuras terem um campo magnético mais forte, indo ao encontro dos resultados obtidos por \cite{Kopp1992}.
+Já no gráfico \ref{fig:area} nota-se uma proporção logarítmica entre a área da mancha solar e seu brilho relativo. Quanto maior a mancha solar mais escura ela se apresenta.
+Essa mesma relação aparece no gráfico \ref{fig:tempxarea} que mostra a disperção das manchas solares em função da temperatura e da área.
+
+\begin{table}
+    \begin{center}
+        \caption{Imagens analisadas pelo programa sunspot base.}
+        \label{table:ex2003}
+        \begin{tabular}{ | l | l | }
+            \hline
+            \textbf{Imagem} & \textbf{Data} \\ \hline
+            \hline
+            fd\_Ic\_6h\_01d.3652.0001.jpg & 2003.01.01\_04:45:00\_TAI \\ \hline
+            fd\_Ic\_6h\_01d.3684.0001.jpg & 2003.02.02\_06:24:00\_TAI \\ \hline
+            fd\_Ic\_6h\_01d.3716.0001.jpg & 2003.03.06\_06:24:00\_TAI \\ \hline
+            fd\_Ic\_6h\_01d.3748.0001.jpg & 2003.04.07\_06:24:00\_TAI \\ \hline
+            fd\_Ic\_6h\_01d.3780.0002.jpg & 2003.05.09\_11:12:00\_TAI \\ \hline
+            fd\_Ic\_6h\_01d.3812.0001.jpg & 2003.06.10\_06:24:00\_TAI \\ \hline
+            fd\_Ic\_6h\_01d.3845.0001.jpg & 2003.07.13\_04:48:00\_TAI \\ \hline
+            fd\_Ic\_6h\_01d.3868.0000.jpg & 2003.08.05\_00:00:00\_TAI \\ \hline
+            fd\_Ic\_6h\_01d.3899.0002.jpg & 2003.09.05\_11:12:00\_TAI \\ \hline
+            fd\_Ic\_6h\_01d.3935.0000.jpg & 2003.10.11\_00:00:00\_TAI \\ \hline
+            fd\_Ic\_6h\_01d.3956.0002.jpg & 2003.11.01\_11:12:00\_TAI \\ \hline
+            fd\_Ic\_6h\_01d.3988.0002.jpg & 2003.12.03\_11:12:00\_TAI \\ \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+\begin{table}
+    \begin{center}
+        \caption{Parte dos dados extraídos pelo programa sunspot com base na imagem da tabela \ref{table:ex2003}}
+        \label{table:re2003}
+        \begin{tabular}{ | l | l | l | l | l | l | l | }
+            \hline
+            \textbf{ID} & \textbf{Lat} & \textbf{Lon} & \textbf{Área Mancha} & \textbf{Contraste} & \textbf{CM Médio} & \textbf{Brilho Sol Médio} \\ \hline
+            \hline
+            00 & -20,987 & 24,306 & 1,47E+08 & 0,7643 & 5,7452 & 14315 \\ \hline
+            01 & 4,616 & -14,257 & 1,48E+07 & 0,9515 & -23,9256 & 14315 \\ \hline
+            02 & 4,732 & -3,241 & 9,93E+06 & 0,9227 & -429,742 & 14315 \\ \hline
+            03 & 6,006 & -6,856 & 8,47E+07 & 0,8379 & -32,2894 & 14315 \\ \hline
+            04 & 5,658 & -5,104 & 3,60E+07 & 0,8911 & -168,08 & 14315 \\ \hline
+            05 & 6,238 & -8,145 & 1,30E+08 & 0,8071 & 287,478 & 14315 \\ \hline
+            06 & 15,044 & -2,747 & 1,06E+07 & 0,9192 & -36,7077 & 14315 \\ \hline
+            11 & -24,413 & 6,739 & 1,21E+07 & 0,9221 & -447,175 & 15606 \\ \hline
+            12 & -2,195 & -14,369 & 1,05E+07 & 0,9417 & 585,566 & 15606 \\ \hline
+            13 & -1,271 & -13,529 & 1,04E+07 & 0,9464 & -528,845 & 15606 \\ \hline
+            14 & -1,04 & -12,697 & 3,11E+07 & 0,9212 & -780,634 & 15606 \\ \hline
+            15 & 1,271 & -14,481 & 2,84E+08 & 0,7564 & -863,181 & 15606 \\ \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tikzpicture}[node distance=6cm, auto]
+            \input avg_magxrint.tex
+        \end{tikzpicture}
+        \caption{Gráfico do brilho relativo da manchas solar pelo campo magnético médio da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
+        \label{fig:mag}
+    \end{center}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tikzpicture}[node distance=6cm, auto]
+            \input areaxint.tex
+        \end{tikzpicture}
+        \caption{Gráfico do brilho relativo da manchas solar pela área da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
+        \label{fig:area}
+    \end{center}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tikzpicture}[node distance=6cm, auto]
+            \input tempxarea.tex
+        \end{tikzpicture}
+        \caption{Gráfico da temperatura da manchas solar pela área da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
+        \label{fig:tempxarea}
+    \end{center}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tikzpicture}[node distance=6cm, auto]
+            \input tempxint.tex
+        \end{tikzpicture}
+        \caption{Gráfico da temperatura da manchas solar pelo contraste da mancha. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
+        \label{fig:tempxint}
+    \end{center}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tikzpicture}[node distance=6cm, auto]
+            \input bxtemp.tex
+        \end{tikzpicture}
+        \caption{Gráfico do campo magnetico absoluto pela temperatura da manchas solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
+        \label{fig:bxtemp}
+    \end{center}
+\end{figure}
+
+\begin{figure}[h]
+    \begin{center}
+        \begin{tikzpicture}[node distance=6cm, auto]
+            \input bxarea.tex
+        \end{tikzpicture}
+        \caption{Gráfico do campo magnetico absoluto pela área da manchas solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
+        \label{fig:bxarea}
+    \end{center}
+\end{figure}
+
+\section{CRONOGRAMA}
+
+\begin{center}
+
+    \begin{table}[!ht]
+        \begin{tabular}{|c|l|c|c|c|c|c|c|}
+            \hline
+            \multicolumn{2}{|c||}{\multirow{2}{*}{\textit{\textbf{Atividade}}}} & \multicolumn{6}{|c|}{\textit{\textbf{2013}}} \\ \cline{3-8}
+            \multicolumn{2}{|l||}{\textit{\textbf{}}}                           & Jul   & Ago   & Set   & Out   & Nov   & Dez  \\ \hline
+            \multicolumn{2}{|c||}{Obtenção de imagens para teste}                            & X      &      &      &      &       &      \\ \hline
+            \multicolumn{2}{|c||}{Detecção de manchas solares}                            & X       &       &       &       &X      &     \\ \hline
+            \multicolumn{2}{|c||}{Agrupamento de manchas solares}                     &       & X      &       &       &       &      \\ \hline
+            \multicolumn{2}{|c||}{Extração de intensidade da mancha.}    &       & X    &      &      &      &     \\ \hline
+            \multicolumn{2}{|c||}{Cálculo do tamanho da mancha}                          &       &       & X      &       &       &      \\ \hline
+            \multicolumn{2}{|c||}{Extração do campo magnético das manchas}                          &       &       & X      &       &       &      \\ \hline
+            \multicolumn{2}{|c||}{Obtenção de imagens do ciclo 23}                            &       &       &       &       &       & X     \\ \hline
+            \multicolumn{2}{|c||}{Redação da dissertação}                            &       &X       &X       &X       &X       & X     \\ \hline
+            \multicolumn{2}{|c||}{Elaboração apresentação de aualificação}                            &       &       &       &       &       & X     \\ \hline
+            \multicolumn{2}{|c||}{\multirow{2}{*}{\textit{\textbf{Atividade}}}} & \multicolumn{6}{|c|}{\textit{\textbf{2014}}} \\ \cline{3-8}
+            \multicolumn{2}{|l||}{\textit{\textbf{}}}                           & Jan   & Fev   & Mar   & Abr   & Mai   & Jun  \\ \hline
+            \multicolumn{2}{|c||}{Redação da dissertação}                            & X      &X       &X       &X       &X       & X     \\ \hline
+            \multicolumn{2}{|c||}{Obtenção de imagens do ciclo 23}                            & X       & X      &       &       &       &      \\ \hline
+            \multicolumn{2}{|c||}{Testes e correções}                            & X     & X      &       &       &       &      \\ \hline
+            \multicolumn{2}{|c||}{Criação da base indicadores}                     &       & X     &      &       &       &      \\ \hline
+            \multicolumn{2}{|c||}{Análise dos resultados}    &      & X     &X      &        &       &      \\ \hline
+            \multicolumn{2}{|c||}{Ajustes indicados na qualificação}                          &       &       &       &X      &X      & X    \\ \hline
+            \multicolumn{2}{|c||}{Elaboração da apresentação de defesa}                          &       &       &       &      &     & X    \\ \hline
+        \end{tabular}
+    \end{table}
+
+\end{center}
+
+\def\refname{REFERÊNCIAS BIBLIOGRÁFICAS}
+\bibliography{biblproj}
+\addcontentsline{toc}{section}{REFERÊNCIAS BIBLIOGRÁFICAS}
+\bibliographystyle{abnt-alf}
+\end{document}

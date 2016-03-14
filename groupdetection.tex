@@ -1,0 +1,17 @@
+    % Place nodes
+    \node [block] (init) {Inicio};
+    \node [block, right of=init] (re_cen) {Ler posição do centro do sol};
+    \node [block, below of=init] (re_rad) {Ler comprimento raio do sol};
+    \node [block, right of=re_rad] (bl_dec) {Detectar as manchas (detecção de blob)};
+    \node [block, below of=re_rad] (ch_cal) {Calcular coordenadas heliograficas das manchas detectadas};
+    \node [block, right of=ch_cal] (gr_dec) {Calcular distância entre as manchas solares};
+    \node [block, below of=ch_cal] (gr_de2) {Agrupar Manchas};
+    \node [block, right of=gr_de2] (fim) {fim};
+    % Draw edges
+    \path [line] (init) -- (re_cen);
+    \path [line] (re_cen) -- (re_rad);
+    \path [line] (re_rad) -- (bl_dec);
+    \path [line] (bl_dec) -- (ch_cal);
+    \path [line] (ch_cal) -- (gr_dec);
+    \path [line] (gr_dec) -- (gr_de2);
+    \path [line] (gr_de2) -- (fim);

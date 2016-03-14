@@ -1,0 +1,17 @@
+\begin{axis}[
+        width=15cm,
+        height=300pt,
+        no markers,
+        date coordinates in=x,
+        xticklabel=\month-\year,
+        xmin={2009-01-01},
+        xmax={2009-12-31},
+        xticklabel style= {rotate=45,anchor=north east},
+        ylabel= Número de Wolf]
+    \addplot table [x=Data, y=MACK] {2009-mack.txt};
+    \addlegendentry{MACK}
+    \addplot table [x=Data, y=NOAA] {2009-noaa.txt};
+    \addlegendentry{NOAA}
+    \addplot table [x=Data, y=SIDC] {2009-sidc.txt};
+    \addlegendentry{SIDC}
+\end{axis}
