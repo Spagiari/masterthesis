@@ -285,20 +285,7 @@ Para a determinação dos grupos de manchas solares pode ser utilizado o critério 
 
 
 \section{METODOLOGIA}
-Este trabalho utilizará como dados de entrada imagens do instrumento MDI (\textit{Michelson Doppler Imager}) do satélite espacial SOHO (\textit{Solar and Heliospheric Observatory}). O MDI é equipado com um sensor CCD de 1024x1024 pixels possibilitando a realização de diversos tipos de observações, tendo como principais produtos a imagem do disco solar em luz branca (intensidade contínua) e o magnetograma, uma representação pictográfica da variação espacial da intensidade do campo magnético solar \cite{Scherrer1991}. Ambas as imagens têm suas séries históricas disponíveis no site do projeto SOHO em formato FITS (\textit{Flexible Image Transport System}), sendo este o formato utilizado na Astronomia para troca de imagens e conteúdos.
-
-Para a extração das informações pretendidas para um determinado dia será necessário o par de imagens luz visível e magnetograma. As imagens devem ser separadas pelo menor tempo possível, visto que as duas observações não ocorrem no mesmo instante. Na base de imagens do SOHO essas duas observações têm geralmente um intervalo de trinta segundos. A imagem em luz branca será convertida para o formato JPG para ser utilizada nos processos de visão computacional e sua original em formato FITS será utilizada como mídia de informação complementar, pois o formato FITS mantém informações importantes sobre o momento da observação bem como valor absoluto de intensidade dos pixels, diferente do formato JPG que guarda apenas o valor relativo de intensidade dos pixels. O magnetograma também é utilizado como uma mídia auxiliar de informação, delas são extraídos dados dos campos magnéticos das regiões das manchas.
-
-%Será construído um software utilizando a linguagem C++, a biblioteca  OpenCV \cite{opencv} e a biblioteca FitsTool para realizar a leitura do conjunto de imagens e aplicação de um algoritmo utilizando binarização e morfologia matemática como descrito por \cite{curto2008} ajustado para as imagens SOHO. O Software para cada conjunto de imagens extrairá intensidade média de fluxo luminoso do Sol no instante da observação, número de manchas solares, número de grupos de manchas solares, área das manchas solares, brilho médio das manchas solares, temperatura média das manchas solares e intensidade média do campo magnético na região das manchas. Como resultado final o software retornará um vetor com as características extraídas.
-
-Serão extraídos os indicadores usando amostras mensais ao longo de um ciclo solar completo.
-Os indicadores extraídos serão número de wolf, localização das manchas solares, área das manchas solares, intensidade relativa das manchas solares, temperatura da mancha solar,
-campo magnético médio das manchas solares e intensidade central do sol no instante da observação.
-Será utilizado o ciclo solar 23 que se estendeu de maio de 1996 até abril de 2008.
-O vetor de características de cada conjunto de imagens será extraído e armazenado em forma de série temporal, sendo a base resultante dividida em quatro partes para a análise.
-Cada parte representará uma etapa no ciclo solar. Primeira parte do início do ciclo solar até o começo do período de alta atividade solar, segunda parte do início do período de alta atividade até o ápice da atividade solar,
-terceira parte do declínio do ápice até o fim do período de alta atividade solar, quarta parte será o ponto de baixa atividade até o fim do ciclo solar vinte e três.
-As correlações conhecidas entre as características das manchas solares e o campo magnético solar serão analisadas em cada parte da base de dados e comparadas.
+Este trabalho utilizará como dados de entrada imagens do instrumento MDI (\textit{Michelson Doppler Imager}) do satélite espacial SOHO (\textit{Solar and Heliospheric Observatory}). O MDI é equipado com um sensor CCD de 1024x1024 pixels possibilitando a realização de diversos tipos de observações, tendo como principais produtos a imagem do disco solar em luz branca (intensidade contínua) e o magnetograma, uma representação pictográfica da variação espacial da intensidade do campo magnético solar \cite{Scherrer1991}. Pode-se ver um exemplo dessas imagens na Figura \ref{fig:mm}. Ambas as imagens têm suas séries históricas disponíveis no site do projeto SOHO em formato FITS (\textit{Flexible Image Transport System}), sendo este o formato utilizado na Astronomia para troca de imagens e conteúdos.
 
 \begin{figure}[h]
     \begin{center}
@@ -308,11 +295,26 @@ As correlações conhecidas entre as características das manchas solares e o campo
     \end{center}
 \end{figure}
 
+Para a extração das informações pretendidas para um determinado dia será necessário utilizar o par de imagens da luz visível e do magnetograma. Estas imagens devem ser separadas pelo menor tempo possível, visto que as duas observações não ocorrem no mesmo instante. Na base de imagens do SOHO essas duas observações têm geralmente um intervalo de trinta segundos. A imagem em luz branca será convertida para o formato JPG para ser utilizada nos processos de visão computacional e sua original em formato FITS será utilizada como mídia de informação complementar, pois o formato FITS mantém informações importantes sobre o momento da observação bem como valor absoluto de intensidade dos pixels, diferente do formato JPG que guarda apenas o valor relativo de intensidade dos pixels. O magnetograma também é utilizado como uma mídia auxiliar de informação, delas são extraídos dados dos campos magnéticos das regiões das manchas.
+
+%Será construído um software utilizando a linguagem C++, a biblioteca  OpenCV \cite{opencv} e a biblioteca FitsTool para realizar a leitura do conjunto de imagens e aplicação de um algoritmo utilizando binarização e morfologia matemática como descrito por \cite{curto2008} ajustado para as imagens SOHO. O Software para cada conjunto de imagens extrairá intensidade média de fluxo luminoso do Sol no instante da observação, número de manchas solares, número de grupos de manchas solares, área das manchas solares, brilho médio das manchas solares, temperatura média das manchas solares e intensidade média do campo magnético na região das manchas. Como resultado final o software retornará um vetor com as características extraídas.
+
+Serão extraídos os indicadores usando amostras mensais ao longo de um ciclo solar completo.
+Os indicadores extraídos serão número de wolf, localização das manchas solares, área das manchas solares, intensidade relativa das manchas solares, temperatura da mancha solar,
+campo magnético médio das manchas solares e intensidade central do Sol no instante da observação.
+Serão utilizadas imagens durante o ciclo solar 23 que se estendeu de maio de 1996 até abril de 2008.
+O vetor de características de cada conjunto de imagens será extraído e armazenado em forma de série temporal, sendo a base resultante dividida em quatro partes para a análise.
+Cada parte representará uma etapa no ciclo solar. Primeira parte do início do ciclo solar até o começo do período de alta atividade solar, segunda parte do início do período de alta atividade até o ápice da atividade solar,
+terceira parte do declínio do ápice até o fim do período de alta atividade solar, quarta parte será o ponto de baixa atividade até o fim do ciclo solar vinte e três.
+As correlações conhecidas entre as características das manchas solares e o campo magnético solar serão analisadas em cada parte da base de dados e comparadas.
+
+
+
 \subsection{Número de Wolf}
 O Número de Wolf é calculado utilizando a equação \ref{eq:wolf}.
 O parametro $K$ representa a constante do observatório, o parâmetro $g$ é a quantidades de grupos e  $s$ representa a quantidade de manchas.
-Esse trabalho utiliza a constante $K$ atribuída ao satélite SOHO que é 1. O parâmetro g é obtido através do algoritmo de detecção de grupos descrito na figura \ref{fig:grou}.
-O parâmetro s é resultante do algoritmos de detecção de manchas solares descrito na figura \ref{fig:det}.
+Esse trabalho utiliza a constante $K$ atribuída ao satélite SOHO que é 1. O parâmetro $g$ é obtido através do algoritmo de detecção de grupos descrito na Figura \ref{fig:grou}.
+O parâmetro $s$ é resultante do algoritmos de detecção de manchas solares descrito na Figura \ref{fig:det}.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
@@ -322,20 +324,19 @@ O parâmetro s é resultante do algoritmos de detecção de manchas solares descrito
     \label{eq:wolf}
 \end{mycapequ}
 
-\subsection{Localização da manchas solar}
-A localização das manchas solares é resultado do algoritmo de detecção de manchas solares descrito na figura \ref{fig:det}.
+\subsection{Localização da mancha solar}
+A localização das manchas solares é resultado do algoritmo de detecção de manchas solares descrito na Figura \ref{fig:det}.
 O algoritmo localiza na imagem JPG em luz branca do disco solar as manchas solares e todos os pixels que as compõem utilizando um algoritmo de detecção de blob.
-Após esse processo é computado o pixel central da mancha e sua referência x e y no mapa do bitmap é convertida para coordenadas heliográficas utilizando as equações \ref{eq:lat} e \ref{eq:lon}.
+Após esse processo é computado o pixel central da mancha e sua referência $x$ e $y$ no mapa do bitmap é convertida para coordenadas heliográficas utilizando as Equações \ref{eq:lat} e \ref{eq:lon}.
 
 \subsection{Intensidade central do Sol}
-A intensidade central do sol é obtida através da imagem em luz branca do disco solar no formato FITS.
-É realizada uma média simples dos pixels pertencentes ao retangulo $(x-5, y-5),(x+5, y+5)$ onde $x$ e $y$ são as condenadas do centro do disco solar obtidos no cabeçalho do arquivos FITS.
+A intensidade central do Sol $Ic$, é obtida através da imagem em luz branca do disco solar no formato FITS.
+É realizada uma média simples dos pixels pertencentes ao retângulo $(x-5, y-5),(x+5, y+5)$ onde $x$ e $y$ são as condenadas do centro do disco solar obtidos no cabeçalho do arquivos FITS.
 
 \subsection{Área da mancha solar}
-A área da mancha solar é estimada combinando os dados da localização da mancha solar obtido no algoritmo de deteção de manchas solares mostrado na figura \ref{fig:det} e
-os parametros observação que estão armazenados no cabeçalho do arquivo da imagem do disco solar em luz branca no formato FITS.
-O calculo de área da mancha solar é realizado pela equação \ref{eq:area}. O parametro $p$ é o numero de pixels da mancha solar, $\theta$ é a escala nominal dos pixels em segundos de arco obtido no cabeçalho do arquivo FITS,
-$d$ é a distância do observador e $lat$ e $lon$ são respectivamentes a latitude e longitude da mancha solar em coordenadas heliográficas.
+A área da mancha solar é estimada combinando os dados da localização da mancha solar obtido no algoritmo de deteção de manchas solares mostrado na Figura \ref{fig:det}.
+O calculo de área da mancha solar é realizado pela Equação \ref{eq:area}. O parametro $p$ é o numero de pixels da mancha solar, $\theta$ é o tamanho angular dos pixels em segundos de arco obtido no cabeçalho do arquivo FITS,
+$d$ é a distância do satélite SOHO ao Sol e $lat$ e $lon$ são respectivamentes a latitude e longitude da mancha solar em coordenadas heliográficas.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
@@ -346,28 +347,20 @@ $d$ é a distância do observador e $lat$ e $lon$ são respectivamentes a latitude 
 \end{mycapequ}
 
 \subsection{Intensidade da mancha solar}
-A intensidade da mancha solar é obtida através da média das intensidades dos pixels da mancha solar lidos do arquivo de imagem do disco solar em luz branca no formato FITS. Essa definição é formalizada na equação \ref{eq:int} onde $I$ é o conjunto de intensidade dos $p$ pixels que compoem a mancha solar.
+A intensidade da mancha solar é obtida através da média das intensidades dos pixels da mancha solar lidos do arquivo de imagem do disco solar em luz branca no formato FITS. Essa definição é formalizada na Equação \ref{eq:int} onde $I$ é o conjunto de intensidade dos $p$ pixels que compoem a mancha solar e $Ic$ é a intencidade média do centro do disco solar definido na sessão 4.3.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
-        \mathit{\left (  \sum_{0}^{p} I_{p} \right )\frac{1}{p}}
+        \mathit{\frac{1}{Ic} \left (  \sum_{0}^{p} I_{p} \right )\frac{1}{p}}
     \end{equation}
     \caption{Intensidade da mancha solar}
     \label{eq:int}
 \end{mycapequ}
 
 \subsection{Temperatura média da mancha solar}
-A temperatura média de uma determinada mancha solar é obtida através da equação \ref{eq:temp}. O parametro $h$ e $K_{b}$ são respectivamente as constantes de Planck e de Boltzmann,
-$T_{c}$ é a temperatura da fotosféra solar, $v$ é a frequência associada ao comprimento de onda de interesse, $f_{i}$ é a intensidade média da mancha dividido pela intensidade central da estrela.
-A equação \ref{eq:fre} mostra como o parametro $v$ é calculado sendo $c$ a constante da velocidade da luz no vácuo e $\lambda$ o comprimento de onda de interesse.
-
-\begin{mycapequ} [!ht]
-    \begin{equation}
-        \mathit{v = \frac{c}{\lambda}}
-    \end{equation}
-    \caption{Frequência associada}
-    \label{eq:fre}
-\end{mycapequ}
+Supondo-se que que tanto a fotosfera solar quanto a mancha irradiam como um corpo negro,
+a temperatura média de uma determinada mancha solar é obtida através da Equação \ref{eq:temp}. As constantes $h$ e $K_{b}$ são respectivamente as constantes de Planck e de Boltzmann,
+$T_{c}$ é a temperatura da fotosfera solar, $v = c/\lambda$ é a frequência associada ao comprimento de onda, $\lambda$ de interesse, $f_{i}$ é a intensidade média da mancha dividido pela intensidade central da estrela (Equação \ref{eq:int}) e $c$ é a constante da velocidade da luz no vácuo.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
@@ -378,13 +371,13 @@ A equação \ref{eq:fre} mostra como o parametro $v$ é calculado sendo $c$ a const
 \end{mycapequ}
 
 \subsection{Campo magnético da mancha solar}
-Para analisar o campo magnético de uma determinada mancha solar são obtido 3 valores o campo magnético médio, o campo magnético médio positivo e o campo magnético médio negativo.
-Para a leitura do campo magnético da mancha solar são utilizado os dados de posicão dos pixels pertencentes a mancha solar obtidos pelo algoritmo de detecção de manchas solares utilizado em conjunto com o
+Para analisar o campo magnético de uma determinada mancha solar são obtidos 3 valores: o campo magnético médio, o campo magnético médio positivo e o campo magnético médio negativo.
+Para a determinar o campo magnético da mancha solar são utilizados os dados de posicão dos pixels pertencentes à mancha solar obtidos pelo algoritmo de detecção de manchas solares utilizado em conjunto com o
 magnetograma do disco solar no formato FITS. É importante que o magnetogama e a imagem em luz branca analizadas sejam separadas pelo menor intervalo de tempo possível.
-Este trabalho não utilizou conjunto de imagens com intervalos de observação maiores de dois minutos.
-No magnetograma em formato FITS o valor correspondente a cada pixel representa a intensidade do campo magnético na região.
-Para cada pixel do conjunto de pixels que compoem uma manchas solar é realizada a leitura do valor correspondente a esse pixel no magnetograma e assim realizada uma média de todos os pixles lidos,
-uma média de todos os pixels povitivos lidos e uma média de todos os pixels negativos lidos.
+Este trabalho utilizou apenas conjuntos de imagens com intervalos de observação menores de dois minutos.
+No magnetograma em formato FITS, o valor correspondente a cada pixel representa a intensidade do campo magnético na região.
+Para cada pixel do conjunto de pixels que compõem uma mancha solar é realizada a leitura do valor correspondente a esse pixel no magnetograma e assim realizada uma média de todos os pixels lidos,
+uma média de todos os pixels positivos lidos e uma média de todos os pixels negativos lidos.
 
 \newpage
 
