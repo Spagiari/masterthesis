@@ -1,5 +1,5 @@
     % Place nodes
-    \node [block] (init) {Inicio};
+    \node [block] (init) {Início};
     \node [block, below of=init] (se_ini) {ESS = 3};
     \node [block, below of=se_ini] (se_inc) {ESS = ESS + 2};
     \node [block, right of=se_ini] (im_ori) {Imagem Original};
@@ -10,7 +10,7 @@
     \node [block, right of= im_bin] (ts_inc) {BT = BT + 1};
     \node [block, below of=at_blk] (fim) {fim};
     \node [block, below of=fim] (mm_opn) {Abertura Morfológica};
-    \node [decision, below of=mm_opn, node distance=3.5cm] (wh_chk) {Aumentou pixels brancos?};
+    \node [decision, below of=mm_opn, node distance=3.5cm] (wh_chk) {Aumentou número de pixels brancos?};
     % Draw edges
     \path [line] (init) -- (se_ini);
     \path [line] (se_ini) -- (se_inc);

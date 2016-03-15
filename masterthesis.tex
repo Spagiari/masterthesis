@@ -418,8 +418,8 @@ uma média de todos os pixels positivos lidos e uma média de todos os pixels nega
 \section{RESULTADOS}
 
 Este trabalho pretende verificar a evolução das relações entre as características das manchas solares durante um ciclo solar completo.
-Para detecção de manchas solares foi utilizado um algoritmo baseado em binarização e morfologia matemática inspirado no método utilizado por \cite{curto2008} adaptado para as imagens do observatório SOHO. Os resultados da detecção de manchas solares foram publicados em 2012 e parte deles podem ser analisados nas figuras \ref{fig:2001} e \ref{fig:2009} \cite{spagiari2012}.
-A figura \ref{fig:2001} compara o resultado de detecção de manchas solares em número de Wolf para o ano de 2001 com os resultados oficiais apresentados pelos institutos NOAA e SIDC.
+Para detecção de manchas solares foi utilizado um algoritmo baseado em binarização e morfologia matemática inspirado no método utilizado por \cite{curto2008} adaptado para as imagens do observatório SOHO. Os resultados da detecção de manchas solares foram publicados em 2012 e parte deles pode ser analisada nas Figuras \ref{fig:2001} e \ref{fig:2009} \cite{spagiari2012}.
+A Figura \ref{fig:2001} compara o resultado de detecção de manchas solares em número de Wolf para o ano de 2001 com os resultados oficiais apresentados pelos institutos NOAA e SIDC.
 A Figura \ref{fig:2009} faz a mesma comparação para o ano de 2009.
 Os anos de 2001 e 2009 foram escolhidos pois representam períodos diferentes de ciclos solares diferentes.
 O ano de 2009 representa um período com baixa incidência de manchas solares e o ano de 2001 representa o período de transição para o período de máxima atividade solar.
@@ -453,14 +453,15 @@ Isso evidenciou como alternativa factível utilizar o método de segmentação de ma
 Parte da produção desse trabalho é um programa chamado sunspot desenvolvido em C++ utilizando as bibliotecas C++ Standard, OpenCV \cite{opencv} e FitsTools.
 O programa implementa os algoritmos e metodologia descrita no capítulo anterior.
 Processando um conjunto de imagens de entrada e gerando uma base de dados com todas as manchas encontradas e suas características.
-Em 2013 \cite{Valio2013} utilizaram o sunspot para extrair os dados de manchas solares a partir de imagens do observatório SOHO das datas descritas na tabela \ref{table:ex2003}.
-A tabela \ref{table:re2003} descreve parte dos resultados gerados pelo programa.
+Em 2013 \cite{Valio2013} utilizaram o sunspot para extrair os dados de manchas solares a partir de imagens do observatório SOHO das datas descritas na Tabela \ref{table:ex2003}.
+A Tabela \ref{table:re2003} descreve parte dos resultados gerados pelo programa.
 As informações extraídas foram úteis para compor um modelo de detecção de manchas estelares.
 
-O gráfico \ref{fig:mag} mostra a intensidade e o brilho relativo da mancha solar pelo seu campo magnético médio.
-Nota-se através desse gráfico que existe uma tendência de as manchas mais escuras terem um campo magnético mais forte, indo ao encontro dos resultados obtidos por \cite{Kopp1992}.
-Já no gráfico \ref{fig:area} nota-se uma proporção logarítmica entre a área da mancha solar e seu brilho relativo. Quanto maior a mancha solar mais escura ela se apresenta.
-Essa mesma relação aparece no gráfico \ref{fig:tempxarea} que mostra a disperção das manchas solares em função da temperatura e da área.
+O gráfico da Figura \ref{fig:mag} mostra a intensidade e o brilho relativo da mancha solar pelo seu campo magnético médio.
+Nota-se através desse gráfico que existe uma tendência de as manchas mais escuras terem um campo magnético mais forte, indo ao encontro dos resultados obtidos por \citecustom{Kopp1992}.
+Já na Figura \ref{fig:area} nota-se uma anticorrelação entre a área da mancha solar e seu brilho relativo. Quanto maior a mancha solar mais escura ela se apresenta.
+%Essa mesma relação aparece no gráfico \ref{fig:tempxarea} que mostra a disperção das manchas solares em função da temperatura e da área.
+A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada na Figura \ref{fig:tempxarea} em função da área das mesma evidencianto que manchas maiores são mais frias. A Figura \ref{fig:bxtemp} aponta para uma relação entre temperatura e o campo magnético, onde manchas mais frias possuem campos magnéticos mais fortes. Baseado nas ultimas duas analises podemos supor que manchas maiores tem campos magnéticos maiores e a Figura \ref{fig:bxarea} indica que está suposição está correta.
 
 \begin{table}
     \begin{center}
@@ -488,7 +489,7 @@ Essa mesma relação aparece no gráfico \ref{fig:tempxarea} que mostra a disperção
 
 \begin{table}
     \begin{center}
-        \caption{Parte dos dados extraídos pelo programa sunspot com base na imagem da tabela \ref{table:ex2003}}
+        \caption{Parte dos dados extraídos pelo programa sunspot com base na imagem da Tabela \ref{table:ex2003}}
         \label{table:re2003}
         \begin{tabular}{ | l | l | l | l | l | l | l | }
             \hline
@@ -515,7 +516,7 @@ Essa mesma relação aparece no gráfico \ref{fig:tempxarea} que mostra a disperção
         \begin{tikzpicture}[node distance=6cm, auto]
             \input avg_magxrint.tex
         \end{tikzpicture}
-        \caption{Gráfico do brilho relativo da manchas solar pelo campo magnético médio da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
+        \caption{Gráfico do brilho relativo da manchas solar pelo campo magnético médio da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latídude e longitude entre -40\degree e 40\degree}.
         \label{fig:mag}
     \end{center}
 \end{figure}
@@ -525,7 +526,7 @@ Essa mesma relação aparece no gráfico \ref{fig:tempxarea} que mostra a disperção
         \begin{tikzpicture}[node distance=6cm, auto]
             \input areaxint.tex
         \end{tikzpicture}
-        \caption{Gráfico do brilho relativo da manchas solar pela área da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
+        \caption{Gráfico do brilho relativo da manchas solar pela área da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latídude e longitude entre -40\degree e 40\degree}.
         \label{fig:area}
     \end{center}
 \end{figure}
@@ -535,27 +536,27 @@ Essa mesma relação aparece no gráfico \ref{fig:tempxarea} que mostra a disperção
         \begin{tikzpicture}[node distance=6cm, auto]
             \input tempxarea.tex
         \end{tikzpicture}
-        \caption{Gráfico da temperatura da manchas solar pela área da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
+        \caption{Gráfico da temperatura da manchas solar pela área da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latídude e longitude entre -40\degree e 40\degree}.
         \label{fig:tempxarea}
     \end{center}
 \end{figure}
 
-\begin{figure}[h]
-    \begin{center}
-        \begin{tikzpicture}[node distance=6cm, auto]
-            \input tempxint.tex
-        \end{tikzpicture}
-        \caption{Gráfico da temperatura da manchas solar pelo contraste da mancha. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
-        \label{fig:tempxint}
-    \end{center}
-\end{figure}
+%\begin{figure}[h]
+%    \begin{center}
+%        \begin{tikzpicture}[node distance=6cm, auto]
+%            \input tempxint.tex
+%        \end{tikzpicture}
+%        \caption{Gráfico da temperatura da manchas solar pelo contraste da mancha. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
+%        \label{fig:tempxint}
+%    \end{center}
+%\end{figure}
 
 \begin{figure}[h]
     \begin{center}
         \begin{tikzpicture}[node distance=6cm, auto]
             \input bxtemp.tex
         \end{tikzpicture}
-        \caption{Gráfico do campo magnetico absoluto pela temperatura da manchas solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
+        \caption{Gráfico do campo magnetico absoluto pela temperatura da manchas solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latídude e longitude entre -40\degree e 40\degree}.
         \label{fig:bxtemp}
     \end{center}
 \end{figure}
@@ -565,7 +566,7 @@ Essa mesma relação aparece no gráfico \ref{fig:tempxarea} que mostra a disperção
         \begin{tikzpicture}[node distance=6cm, auto]
             \input bxarea.tex
         \end{tikzpicture}
-        \caption{Gráfico do campo magnetico absoluto pela área da manchas solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas tem altidude e longitude entra -40\degree e 40\degree}.
+        \caption{Gráfico do campo magnetico absoluto pela área da manchas solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latídude e longitude entre -40\degree e 40\degree}.
         \label{fig:bxarea}
     \end{center}
 \end{figure}
@@ -577,26 +578,21 @@ Essa mesma relação aparece no gráfico \ref{fig:tempxarea} que mostra a disperção
     \begin{table}[!ht]
         \begin{tabular}{|c|l|c|c|c|c|c|c|}
             \hline
-            \multicolumn{2}{|c||}{\multirow{2}{*}{\textit{\textbf{Atividade}}}} & \multicolumn{6}{|c|}{\textit{\textbf{2013}}} \\ \cline{3-8}
-            \multicolumn{2}{|l||}{\textit{\textbf{}}}                           & Jul   & Ago   & Set   & Out   & Nov   & Dez  \\ \hline
-            \multicolumn{2}{|c||}{Obtenção de imagens para teste}                            & X      &      &      &      &       &      \\ \hline
-            \multicolumn{2}{|c||}{Detecção de manchas solares}                            & X       &       &       &       &X      &     \\ \hline
-            \multicolumn{2}{|c||}{Agrupamento de manchas solares}                     &       & X      &       &       &       &      \\ \hline
-            \multicolumn{2}{|c||}{Extração de intensidade da mancha.}    &       & X    &      &      &      &     \\ \hline
-            \multicolumn{2}{|c||}{Cálculo do tamanho da mancha}                          &       &       & X      &       &       &      \\ \hline
-            \multicolumn{2}{|c||}{Extração do campo magnético das manchas}                          &       &       & X      &       &       &      \\ \hline
-            \multicolumn{2}{|c||}{Obtenção de imagens do ciclo 23}                            &       &       &       &       &       & X     \\ \hline
-            \multicolumn{2}{|c||}{Redação da dissertação}                            &       &X       &X       &X       &X       & X     \\ \hline
-            \multicolumn{2}{|c||}{Elaboração apresentação de aualificação}                            &       &       &       &       &       & X     \\ \hline
-            \multicolumn{2}{|c||}{\multirow{2}{*}{\textit{\textbf{Atividade}}}} & \multicolumn{6}{|c|}{\textit{\textbf{2014}}} \\ \cline{3-8}
+            \multicolumn{2}{|c||}{\multirow{2}{*}{\textit{\textbf{Atividade}}}} & \multicolumn{6}{|c|}{\textit{\textbf{2016}}} \\ \cline{3-8}
             \multicolumn{2}{|l||}{\textit{\textbf{}}}                           & Jan   & Fev   & Mar   & Abr   & Mai   & Jun  \\ \hline
-            \multicolumn{2}{|c||}{Redação da dissertação}                            & X      &X       &X       &X       &X       & X     \\ \hline
-            \multicolumn{2}{|c||}{Obtenção de imagens do ciclo 23}                            & X       & X      &       &       &       &      \\ \hline
-            \multicolumn{2}{|c||}{Testes e correções}                            & X     & X      &       &       &       &      \\ \hline
-            \multicolumn{2}{|c||}{Criação da base indicadores}                     &       & X     &      &       &       &      \\ \hline
-            \multicolumn{2}{|c||}{Análise dos resultados}    &      & X     &X      &        &       &      \\ \hline
-            \multicolumn{2}{|c||}{Ajustes indicados na qualificação}                          &       &       &       &X      &X      & X    \\ \hline
-            \multicolumn{2}{|c||}{Elaboração da apresentação de defesa}                          &       &       &       &      &     & X    \\ \hline
+            \multicolumn{2}{|c||}{Redação da dissertação}                       &       &       &X       &X       &X       & X     \\ \hline
+            \multicolumn{2}{|c||}{Obtenção das Imagens do ciclo 23}             &       &       &X       &X       &X       &      \\ \hline
+            \multicolumn{2}{|c||}{Elaboração apresentação de qualificação}      &       &       &X       &       &       &      \\ \hline
+            \multicolumn{2}{|c||}{Preparacao dos dados para o experimento}      &       &       &       &       &       &X      \\ \hline
+            \multicolumn{2}{|c||}{\multirow{2}{*}{\textit{\textbf{Atividade}}}} & \multicolumn{6}{|c|}{\textit{\textbf{2016}}} \\ \cline{3-8}
+            \multicolumn{2}{|l||}{\textit{\textbf{}}}                           & Jul   & Ago   & Set   & Out   & Nov   & Dez  \\ \hline
+            \multicolumn{2}{|c||}{Preparacao dos dados para o experimento}      & X     &       &       &       &       &      \\ \hline
+            \multicolumn{2}{|c||}{Testes e correções}                           &       & X     & X     &       &       &      \\ \hline
+            \multicolumn{2}{|c||}{Criação da base indicadores}                  &       & X     &       &       &       &      \\ \hline
+            \multicolumn{2}{|c||}{Análise dos resultados}                       &       & X     & X     &       &       &      \\ \hline
+            \multicolumn{2}{|c||}{Ajustes indicados na qualificação}            & X     & X     & X     &       &       &     \\ \hline
+            \multicolumn{2}{|c||}{Elaboração da apresentação de defesa}         &       &       & X     & X     &       &     \\ \hline
+            \multicolumn{2}{|c||}{Redação da dissertação}                       & X     & X     & X     & X     &       &      \\ \hline
         \end{tabular}
     \end{table}
 
