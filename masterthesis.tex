@@ -11,6 +11,7 @@
 \usepackage{tikz}
 \usepackage{multirow}
 \usepackage[section]{algorithm}
+\usepackage[section]{placeins}
 \usepackage{algcompatible}
 \usepackage{gensymb}
 
@@ -235,8 +236,8 @@ Descrito matematicamente pela Equação \ref{eq:fech} combina a operação de dilata
     \begin{equation}
         \mathit{f}\bullet\mathit{b} = \left(\mathit{f}\Theta\mathit{b}\right)\theta\mathit{b}
     \end{equation}
-    \label{eq:fech}
     \caption{Operação de fechamento}
+    \label{eq:fech}
 \end{mycapequ}
 
 \paragraph{Transformadas top-hat e bottom-hat}
@@ -381,7 +382,7 @@ uma média de todos os pixels positivos lidos e uma média de todos os pixels nega
 
 \newpage
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \begin{center}
         \begin{tikzpicture}[node distance=6cm, auto]
             \input Main.tex
@@ -393,7 +394,7 @@ uma média de todos os pixels positivos lidos e uma média de todos os pixels nega
 
 \newpage
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \begin{center}
         \begin{tikzpicture}[node distance=6cm, auto]
             \input spotdetection.tex
@@ -405,7 +406,7 @@ uma média de todos os pixels positivos lidos e uma média de todos os pixels nega
 
 \newpage
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \begin{center}
         \begin{tikzpicture}[node distance=6cm, auto]
             \input groupdetection.tex
@@ -430,7 +431,7 @@ porém se mostrou mais frágil em períodos de baixa atividade, detectando um peque
 Observa-se também que os resultados obtidos em número de Wolf tiveram alta correlação com os números publicados pelos institutos NOAA e SIDC.
 Isso evidenciou como alternativa factível utilizar o método de segmentação de manchas solares baseado em binarização e morfologia matemática apresentado por este trabalho.
 
-\begin{figure}[!h]
+\begin{figure}[!htbp]
     \begin{center}
         \begin{tikzpicture}
             \input 2001_mackxnoaaxsidc.tex
@@ -440,7 +441,7 @@ Isso evidenciou como alternativa factível utilizar o método de segmentação de ma
     \end{center}
 \end{figure}
 
-\begin{figure}[!h]
+\begin{figure}[!htbp]
     \begin{center}
         \begin{tikzpicture}
             \input 2009_mackxnoaaxsidc.tex
@@ -463,7 +464,7 @@ Já na Figura \ref{fig:area} nota-se uma anticorrelação entre a área da mancha so
 %Essa mesma relação aparece no gráfico \ref{fig:tempxarea} que mostra a disperção das manchas solares em função da temperatura e da área.
 A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada na Figura \ref{fig:tempxarea} em função da área das mesma evidencianto que manchas maiores são mais frias. A Figura \ref{fig:bxtemp} aponta para uma relação entre temperatura e o campo magnético, onde manchas mais frias possuem campos magnéticos mais fortes. Baseado nas ultimas duas analises podemos supor que manchas maiores tem campos magnéticos maiores e a Figura \ref{fig:bxarea} indica que está suposição está correta.
 
-\begin{table}
+\begin{table} [!htbp]
     \begin{center}
         \caption{Imagens analisadas pelo programa sunspot base.}
         \label{table:ex2003}
@@ -487,7 +488,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
     \end{center}
 \end{table}
 
-\begin{table}
+\begin{table} [!htbp]
     \begin{center}
         \caption{Parte dos dados extraídos pelo programa sunspot com base na imagem da Tabela \ref{table:ex2003}}
         \label{table:re2003}
@@ -511,7 +512,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
     \end{center}
 \end{table}
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \begin{center}
         \begin{tikzpicture}[node distance=6cm, auto]
             \input avg_magxrint.tex
@@ -521,7 +522,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
     \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!htbp]
     \begin{center}
         \begin{tikzpicture}[node distance=6cm, auto]
             \input areaxint.tex
@@ -531,7 +532,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
     \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!h]
     \begin{center}
         \begin{tikzpicture}[node distance=6cm, auto]
             \input tempxarea.tex
@@ -551,7 +552,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
 %    \end{center}
 %\end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!h]
     \begin{center}
         \begin{tikzpicture}[node distance=6cm, auto]
             \input bxtemp.tex
@@ -561,7 +562,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
     \end{center}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[!h]
     \begin{center}
         \begin{tikzpicture}[node distance=6cm, auto]
             \input bxarea.tex
@@ -574,8 +575,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
 \section{CRONOGRAMA}
 
 \begin{center}
-
-    \begin{table}[!ht]
+    \begin{table}[!h]
         \begin{tabular}{|c|l|c|c|c|c|c|c|}
             \hline
             \multicolumn{2}{|c||}{\multirow{2}{*}{\textit{\textbf{Atividade}}}} & \multicolumn{6}{|c|}{\textit{\textbf{2016}}} \\ \cline{3-8}
