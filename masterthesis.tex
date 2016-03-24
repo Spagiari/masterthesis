@@ -53,7 +53,7 @@ minimum height=2em]
     \vskip 3.5cm
 \end{center}
 \hfill{\vbox{\hsize=8.5cm\noindent\strut
-        Dissertação de Mestrado apresentada ao\break
+        Trabalho de Qualificação apresentado ao\break
         Programa de Pós-Graduação em Engenharia\break
         Elétrica, como parte das Exigências para\break
         Obtenção do Grau de Mestre em Engenharia\break
@@ -82,17 +82,16 @@ minimum height=2em]
 As manchas solares são regiões mais frias, portanto mais escuras que surgem na superfície do Sol na região denominada Fotosfera,
 sendo esse fenômeno associado às mudanças no campo magnético solar e ao seu ciclo de atividade.
 As manchas solares são a manifestação mais notável da variação da atividade solar, sendo que o número de manchas varia ao longo dos anos,
-aumentando e diminuindo segundo um ciclo de aproximadamente 11 anos \cite{Hathaway2015}.
-Fenômenos relacionados à atividade solar podem causar desde interferências nas comunicações até a alteração na temperatura global \cite{colak2007, Ahluwalia2012}.
+aumentando e diminuindo segundo um ciclo de aproximadamente 11 anos.
+Fenômenos relacionados à atividade solar podem causar desde interferências nas comunicações até a alteração na temperatura global.
 
 São conhecidas algumas correlações entre as características físicas das manchas solares e o campo magnético.
-Em 1992 \cite{Kopp1992} observou uma relação não linear entre o campo magnético e o brilho da mancha solar.
-\cite{Rezaei2012,Tlatov2013} apontaram um relação entre a intensidade do campo magnético e a área da mancha solar,
-\cite{Penn2006,Rezaei2012} a estudaram ao longo de períodos preestabelecidos.
+Em 1992 observou-se uma relação não linear entre o campo magnético e o brilho da mancha solar.
+Trabalhos mais recentes de 2012 e 1013 apontaram uma relação entre a intensidade do campo magnético e a área da mancha solar. Também foi investigado a evolução das características das manchas solares ao longo do tempo.
 
 Esse trabalho analisará as características das manchas solares durante o ciclo solar vinte e três utilizando técnicas de visão computacional.
 As imagens do telescópio espacial SOHO (\textit{Solar and Heliospheric Observatory}) serão utilizadas no processo de detecção das manchas solares e da extração de suas características.
-Ainda, serão analisados o fluxo de irradiância do Solar, número de manchas, quantiade de grupos, área, temperatura, brilho e o campo magnético médio das manchas solares.
+Ainda, serão analisados o fluxo de irradiância do Solar, número de manchas, quantidade de grupos, área, temperatura, brilho e o campo magnético médio das manchas solares.
 Com base nos dados obtidos, pretende-se verificar o comportamento dessas características e relações entre as mesmas ao longo dos períodos de mínimo e de máximo solar.
 \\[0.5cm]
 \begin{flushleft}
@@ -111,37 +110,45 @@ Com base nos dados obtidos, pretende-se verificar o comportamento dessas caracte
 \renewcommand{\baselinestretch}{1.5}
 \normalsize
 \section{INTRODUÇÃO}
-As manchas solares foram observadas através de telescópios pela primeira vez por Galileu entre outros por volta de 1610 \cite{Eddy1976}. Deste então elas vêm sendo estudadas em detalhes, como a quantidade e a área das manchas observadas \cite{Hathaway2015}. Diversas técnicas de observação solar foram desenvolvidas. Em 1995 a NASA lançou em órbita o satélite SOHO com a missão de observar o Sol utilizando diferentes instrumentos, incluindo o MDI (\textit{Michelson Doppler Imager}), uma câmera CCD de 1024x1024 pixels, que observa o Sol no comprimento de onda visível e pode-se detectar as manchas solares sem a interferência da atmosfera terrestre \cite{Scherrer1991}.
+As manchas solares foram observadas através de telescópios pela primeira vez por Galileu entre outros por volta de 1610 \cite{Eddy1976}. Deste então elas vêm sendo estudadas em detalhes, como a quantidade e a área das manchas observadas \cite{Hathaway2015}. Diversas técnicas de observação solar foram desenvolvidas. Em 1995 a NASA lançou em órbita o satélite SOHO com a missão de observar o Sol utilizando diferentes instrumentos, incluindo o MDI (\textit{Michelson Doppler Imager}), uma câmera CCD de 1024x1024 pixels, que observa o Sol no comprimento de onda visível e detecta as manchas solares sem a interferência da atmosfera terrestre \cite{Scherrer1991}.
 
-O estudo do Sol, em particular das manchas solares, possui muitas finalidades, porém a principal motivação decorre do fato das manchas solares serem a manifestação mais básica do campo magnético solar que está intrinsicamente ligada ao ciclo solar. Nos períodos de alta atividade solar, fenômenos como explosões solares e ejeção de massa coronal são frequentes e seus efeitos podem ocasionar inúmeros distúrbios, como alterações temporárias no campo magnético global e afetar sistemas terrestres, tais como linhas de transmissão de energia elétrica, sistema de telecomunicação, missões espaciais, satélites artificiais, dentre outras \cite{colak2007}. Porém, o ciclo de atividade solar de aproximadamente onze anos e as pequenas alterações na irradiância solar podem de uma forma menos imediatista influenciar o clima na Terra. Por exemplo, o mínimo de Maunder foi um período de atividade solar praticamente nula que comprovadamente influenciou o clima terrestre. Causando uma mini era do gelo.\cite{Eddy1976, Ahluwalia2012}.
+O estudo do Sol, em particular das manchas solares, possui muitas finalidades, porém a principal motivação decorre do fato das manchas solares serem a manifestação mais básica do campo magnético solar que está intrinsicamente ligada ao ciclo solar. Nos períodos de alta atividade solar, fenômenos como explosões solares e ejeção de massa coronal são frequentes e seus efeitos podem ocasionar inúmeros distúrbios, como alterações temporárias no campo magnético global terrestre além de afetar sistemas terrestres, tais como linhas de transmissão de energia elétrica, sistema de telecomunicação, missões espaciais, satélites artificiais, dentre outras \cite{colak2007}. Porém, o ciclo de atividade solar de aproximadamente onze anos e as pequenas alterações na irradiância solar podem de uma forma menos imediatista influenciar o clima na Terra. Por exemplo, o mínimo de Maunder foi um período de atividade solar praticamente nula que comprovadamente influenciou o clima terrestre, causando uma mini era do gelo.\cite{Eddy1976, Ahluwalia2012}.
 
 Técnicas de visão computacional para segmentação automática de manchas solares e extração de suas características foram aplicadas nos últimos anos com altos níveis de correlação aos índices oficiais. Em 2003, \citecustom{zharkova2003} utilizaram o algoritmo de detecção de borda de Canny para descobrir as manchas com base em seus contornos. Em 2005, \citecustom{zharkov2005} apresentaram uma técnica de detecção de manchas solares utilizando o algoritmo de Sobbel, filtros morfológicos, binarização e um processo de pré-processamento de imagem para remoção de ruídos e atenuação do efeito do escurecimento do limbo solar. Em 2007, \citecustom{colak2007} argumentaram sobre a utilização de dados obtidos por meio do emprego de técnicas de visão computacional para a previsão do clima espacial. No ano seguinte \citecustom{curto2008} apresentaram um algoritmo baseado em técnicas de binarização e morfologia matemática. Em 2012, \citecustom{spagiari2012} desenvolveram um algoritimo inspirado no artigo de \citecustom{curto2008} para segmentação de manchas solares utilizando as imagens do observatório SOHO.
 
 Nos últimos anos em especial, foram feitos diversos trabalhos com o objetivo de investigar o comportamento das características das manchas solares ao longo do tempo. Em 1992, \citecustom{Kopp1992} estudaram a relação entre a intensidade do campo magnético e temperatura na região da mancha solar encontrando uma relação não linear entre a intensidade do campo magnético e o brilho da mancha solar. \citecustom{Penn2006} analisaram cerca de 900 manchas solares no período entre 1998 e 2005, observando mudanças no campo magnético e na temperatura das manchas, os resultados obtidos reafirmaram os resultados obtidos por \citecustom{Kopp1992}.
 
-Em 2013, \citecustom{Javaraiah2013} investigou a variação da área das manchas solares. Este trabalho ainda analisou dados de grupos manchas solares de 1874 até 2011 e descobriu indícios de uma variação mais abrangente na atividade solar, um possível ciclo de aproximadamente quarenta e quatro anos. No mesmo ano, \citecustom{Toma2013} publicaram o resultado do seu estudo da evolução das áreas das manchas solares sobre os ciclos solares 22 e 23 concluindo que houve uma diminuição significativa na área das manchas solares do ciclo 23 em comparação com o ciclo 22 os autores argumentaram que essa diminuição pode ser indício de mudanças no dínamo solar.
+Em 2013, \citecustom{Javaraiah2013} investigou a variação da área das manchas solares. O trabalho analisou dados de grupos manchas solares de 1874 até 2011 e descobriu indícios de uma variação mais abrangente na atividade solar, um possível ciclo de aproximadamente quarenta e quatro anos. O autor também escreveu sobre a impotância do estudo das características das manchas solares ao logo do tempo, pois podem revelar pistas sobre o funcionamento do dínamo solar. No mesmo ano, \citecustom{Toma2013} publicaram o resultado do seu estudo da evolução das áreas das manchas solares sobre os ciclos solares 22 e 23 concluindo que houve uma diminuição significativa na área das manchas solares do ciclo 23 em comparação com o ciclo 22. Os autores argumentaram que essa diminuição pode ser indício de mudanças no dínamo solar.
 
 Neste trabalho serão empregadas as técnicas de visão computacional para a detecção e a extração automáticas de características de manchas solares em imagens do disco solar. Serão utilizadas as imagens do instrumento MDI do satélite SOHO em luz branca e o magnetograma. Ainda, serão extraídas as características relevantes das manchas solares detectadas, tais como: área, temperatura, contraste e intensidade do campo magnético. Ressalta-se que a pesquisa será realizada para todo o ciclo solar 23 e buscará aferir se há alterações nas correlações conhecidas entre essas características ao decorrer do ciclo solar. Neste sentido, \citecustom{Toma2013} afirmam que o estudo das manchas solares e a sua relação com o ciclo solar são importantes, pois fornecem pistas sobre o funcionamento do dínamo solar, sendo este o mecanismo de geração do campo magnético do Sol.
 
-\section{JUSTIFICATIVA}
-O Sol é essencial para a existência de vida na Terra. Atualmente pesquisadores se esforçam para localizar estrelas com características próximas ao nosso Sol na via-lactea, pois é um indício de um sistema estelar propício para o surgimento de vida. Entretanto, a atividade da nossa estrela na forma de ejeções ou explosões causam fenômenos que afetam não somente a Terra, mas todo Sistema Solar. Esse tipo de evento pode causar uma série de efeitos que vão desde interferência em sistemas de comunicação ao enfraquecimento no campo eletromagnético terrestre com diminuição momentaneamente à proteção contra radiação solar nociva \cite{colak2007}. Estudos realizados utilizando dados da atividade solar observados, por meio da contagens de manchas solares, comprovam que a atividade solar influencia o clima terrestre \cite{Ahluwalia2012, Eddy1976}
+\section{OBJETIVO}
+%O Sol é essencial para a existência de vida na Terra. Atualmente pesquisadores se esforçam para localizar estrelas com características próximas ao nosso Sol na via-lactea, pois é um indício de um sistema estelar propício para o surgimento de vida. Entretanto, a atividade da nossa estrela na forma de ejeções ou explosões causam fenômenos que afetam não somente a Terra, mas todo Sistema Solar. Esse tipo de evento pode causar uma série de efeitos que vão desde interferência em sistemas de comunicação ao enfraquecimento no campo eletromagnético terrestre com diminuição momentaneamente à proteção contra radiação solar nociva \cite{colak2007}. Estudos realizados utilizando dados da atividade solar observados, por meio da contagens de manchas solares, comprovam que a atividade solar influencia o clima terrestre \cite{Ahluwalia2012, Eddy1976}
 
-Segundo \citecustom{Toma2013}, as manchas solares são uma das principais manifestações da atividade solar, e estão intrinsicamente relacionadas ao campo magnético solar. As manchas são regiões frias e, portanto, escuras na superfície do Sol, onde a concentração do campo magnético é de centenas a milhares de vezes o campo magnético global do Sol \cite{Javaraiah2013}. Segundo \citecustom{Hathaway1994}, as manchas solares são um importante indicador da evolução da atividade solar durante o ciclo solar.
+%Segundo \citecustom{Toma2013}, as manchas solares são uma das principais manifestações da atividade solar, e estão intrinsicamente relacionadas ao campo magnético solar. As manchas são regiões frias e, portanto, escuras na superfície do Sol, onde a concentração do campo magnético é de centenas a milhares de vezes o campo magnético global do Sol \cite{Javaraiah2013}. Segundo \citecustom{Hathaway1994}, as manchas solares são um importante indicador da evolução da atividade solar durante o ciclo solar.
 
-O estudo de características das manchas solares ao longo do tempo pode revelar pistas do funcionamento do dínamo solar \cite{Javaraiah2013}. Em 1992, \citecustom{Kopp1992} observaram uma relação entre o quadrado do campo magnético da região da umbra da mancha solar e a temperatura dessa região. Em 2006, \citecustom{Penn2006} observaram novecentas manchas solares entre 1998 e 2005, analisando mudanças de campo magnético e temperatura ao longo do tempo e, com base nos dados observacionais, notou-se um aumento na temperatura na umbra das manchas analisadas e uma diminuição dos campos magnéticos dessas regiões.
+%O estudo de características das manchas solares ao longo do tempo pode revelar pistas do funcionamento do dínamo solar \cite{Javaraiah2013}. Em 1992, \citecustom{Kopp1992} observaram uma relação entre o quadrado do campo magnético da região da umbra da mancha solar e a temperatura dessa região. Em 2006, \citecustom{Penn2006} observaram novecentas manchas solares entre 1998 e 2005, analisando mudanças de campo magnético e temperatura ao longo do tempo e, com base nos dados observacionais, notou-se um aumento na temperatura na umbra das manchas analisadas e uma diminuição dos campos magnéticos dessas regiões.
 
-Este trabalho tem como objetivo estudar a temperatura, a área e o campo magnético das manchas solares durante um ciclo solar completo e analisar se existem variações das relações de temperatura, área e campo magnético entre os períodos de mínima e de máxima atividade. Alterações da relação entre campo magnético solar, área e temperatura durante um mesmo ciclo solar fornecerá um melhor entendimento do campo magnético solar e de seus mecanismos de geração.
+Este trabalho tem como objetivo estudar a correlação ente a temperatura, a área e o campo magnético das manchas solares durante um ciclo solar completo. Também pretendemos analisar se existem variações destas relações de temperatura, área e campo magnético entre os períodos de mínima e de máxima atividade. Alterações da relação entre campo magnético solar, área e temperatura durante um mesmo ciclo solar fornecerá um melhor entendimento do campo magnético solar e de seus mecanismos de geração.
 
 \section{FÍSICA SOLAR}
 
 \subsection{Atividade solar}
-A atividade solar envolve os mais energéticos fenomes do Sistema Solar. O Sol possui períodos de alta atividade e de baixa atividade apresentando um comportamento cíclico. O ciclo solar mais evidente é de aproximadamente onze anos, quando o Sol parte de um período de baixa atividade e evolui para um período de alta atividade e depois volta à baixa atividade. Dados históricos sobre a atividade solar apresentam indícios de que existem outros ciclos mais longos ainda não totalmente compreendidos, como o ciclo de Gleissberg que evidencia duas componentes diferentes a primeira variando entre 90 e 100 anos e a segunda entre 50 e 60 anos \cite{Hathaway1994, Javaraiah2013, Hathaway2015}. Há indícios que a atividade solar influencia diretamente no clima terrestre podendo causar alteração na temperatura média anual e também causar invernos mais rigorosos e verões mais quentes e longos \cite{Eddy1976, Ahluwalia2012} .
+A atividade solar envolve os mais energéticos fenômenos do Sistema Solar. O Sol possui períodos de alta e de baixa atividade apresentando um comportamento cíclico. O ciclo solar mais evidente é de aproximadamente onze anos, quando o Sol parte de um período de baixa atividade e evolui para um período de alta atividade e depois volta à baixa atividade. Dados históricos sobre a atividade solar apresentam indícios de que existem outros ciclos mais longos ainda não totalmente compreendidos, como o ciclo de Gleissberg que evidencia duas componentes diferentes a primeira variando entre 90 e 100 anos e a segunda entre 50 e 60 anos \cite{Hathaway1994, Javaraiah2013, Hathaway2015}. Há indícios que a atividade solar influencia diretamente no clima terrestre podendo causar alteração na temperatura média anual e também causar invernos mais rigorosos e verões mais quentes e longos \cite{Eddy1976, Ahluwalia2012} .
 
-O campo magnético solar influi diretamente na atividade solar, em períodos de baixa atividade as linhas de campo magnético solar apresentam a configuração de um dipolo e a distribuição dos campos magnéticos é mais homogênea em toda superfície solar. Porém em períodos de máxima atividade os campos magnéticos ficam desordenados rearranjando-se localmente, formando regiões com altas concentrações de campo magnético que potencialmente podem liberar energia. Essas concentrações de campo magnético afetam o fluxo convectivo do plasma logo abaixo da fotosfera, camada visível mais baixa da atmosfera solar. Como o plasma tem o seu ciclo de convecção interrompido a atmosfera solar não é eficientemente aquecida, assim o plasma confinado na fotosfera pelos campos magnéticos presentes na região formam manchas escuras no disco solar. As regiões são escuras seguindo a lei de Stefan-Boltzmann onde o fluxo radiante de um corpo é descrito em função da temperatura do corpo, logo as regiões mais frias se apresentam menos brilhantes. As manchas solares geralmente apresentam duas regiões, uma região central mais escura e uma periférica mais clara denominadas umbra e penumbra \cite{Hathaway1994}. Como pode ser visto na figura \ref{fig:sunspot}.
+O campo magnético solar influi diretamente na atividade solar, em períodos de baixa atividade as linhas de campo magnético solar apresentam a configuração de um dipolo e a distribuição dos campos magnéticos é mais homogênea em toda superfície solar. Porém em períodos de máxima atividade os campos magnéticos ficam desordenados rearranjando-se localmente, formando regiões com altas concentrações de campo magnético que potencialmente podem liberar energia. Essas concentrações de campo magnético afetam o fluxo convectivo do plasma logo abaixo da fotosfera, camada visível mais baixa da atmosfera solar. Como o plasma tem o seu ciclo de convecção interrompido a atmosfera solar não é eficientemente aquecida, assim o plasma confinado na fotosfera pelos campos magnéticos presentes na região formam manchas escuras no disco solar. As regiões são escuras seguindo a lei de Stefan-Boltzmann onde o fluxo radiante de um corpo é descrito em função da temperatura do corpo, logo as regiões mais frias se apresentam menos brilhantes. As manchas solares geralmente apresentam duas regiões, uma região central mais escura e uma periférica mais clara denominadas umbra e penumbra \cite{Hathaway1994}. Como pode ser visto na Figura \ref{fig:sunspot}.
 
-A observação contínua das manchas solares comprovou que o Sol possui rotação diferencial, sendo que a região do equador solar gira um pouco mais rápido que os pólos. Essa peculiar forma de rotação do Sol causa lentamente a torção das linhas de campo magnético até o ponto onde as configurações originais não se sustentam e os rearranjos de campos magnéticos acontecem, causando assim o ciclo de atividade solar de aproximadamente onze anos. O ciclo solar de onze anos marca a inversão dos pólos magnéticos norte e sul solar, portanto a cada dois ciclos de onze anos os pólos magnéticos solares voltam a sua configuração original. Formando um ciclo de vinte e dois anos \cite{Babcock1961}. Na figura \ref{fig:sc} pode se ver claramente o ciclo de onze anos através da média diaria da área das manchas solares.
+A observação contínua das manchas solares comprovou que o Sol possui rotação diferencial, sendo que a região do equador solar gira um pouco mais rápido que os pólos. Essa peculiar forma de rotação do Sol causa lentamente a torção das linhas de campo magnético até o ponto onde as configurações originais não se sustentam e os rearranjos de campos magnéticos acontecem, causando assim o ciclo de atividade solar de aproximadamente onze anos. O ciclo solar de onze anos marca a inversão dos pólos magnéticos norte e sul solar, portanto a cada dois ciclos de onze anos os pólos magnéticos solares voltam a sua configuração original. Formando um ciclo magnético de vinte e dois anos \cite{Babcock1961}. Na Figura \ref{fig:sc} pode-se ver claramente o ciclo de onze anos através da média diária da área das manchas solares.
 
-O número de manchas solares é o índice mais utilizado no estudo de longo prazo da atividade solar. Rudolf Wolf em 1961 definiu o número relativo de manchas solares, como sendo R = k(10g + s) onde, g é o número de grupos de manchas solares, s é o número total de pontos em todos os grupos no disco visível, e $k$ é um fator de correção de equipamento de observação \cite{Hathaway2015, svalgaard2010}. O índice de número de manchas solares normaliza a observação das manchas solares diminuindo os erros de observação e diferenças de resolução nos equipamentos óticos. Para tanto o número de Wolf impõe um peso maior aos grupos de manchas solares, pois manchas próximas potencialmente compartilham os mesmos campos magnéticos fazendo parte da mesma região ativa \cite{Hathaway2015}.
+O número de manchas solares é o índice mais utilizado no estudo de longo prazo da atividade solar. Rudolf Wolf em 1961 definiu o número relativo de manchas solares, como sendo $R = k(10g + s)$ onde, $g$ é o número de grupos de manchas solares, $s$ é o número total de pontos em todos os grupos no disco visível, e $k$ é um fator de correção de equipamento de observação \cite{Hathaway2015, svalgaard2010}. O índice de número de manchas solares normaliza a observação das manchas solares diminuindo os erros de observação e diferenças de resolução nos equipamentos óticos. Para tanto o número de Wolf impõe um peso maior aos grupos de manchas solares, pois manchas próximas potencialmente compartilham os mesmos campos magnéticos fazendo parte da mesma região ativa \cite{Hathaway2015}.
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.9\textwidth]{sunspot.png}
+        \caption{Imagem ampliada de uma região solar ativa.}
+        \label{fig:sunspot}
+    \end{center}
+\end{figure}
 
 \begin{figure}[h]
     \begin{center}
@@ -157,14 +164,6 @@ O número de manchas solares é o índice mais utilizado no estudo de longo prazo d
 As manchas solares evoluem e se dissipam nas regiões ativas. Geralmente mais de uma mancha compartilham a mesma região ativa. Esse conglomerado de manchas ligado a uma mesma região ativa é chamado de grupo de manchas. Por fazerem parte de uma mesma região ativa sujeitas à mesma configuração de arranjo de campos magnéticos essas manchas compartilham características físicas tais como tempo de vida e localização espacial \cite{curto2008}. Para estimar corretamente o número de Wolf para um determinado dia de observação é necessário um método robusto de segmentação das áreas de interesse, as manchas solares, e um método igualmente confiável para se determinar os grupos de manchas.
 
 Nos últimos anos algumas técnicas de visão computacional foram aplicadas ao problema de detecção automática de manchas solares obtendo resultados satisfatórios. \citecustom{zharkov2005} utilizaram técnicas de processamento de imagens para remover ruídos e detalhes sem interesse, após o pré-processamento utilizaram o algoritmo de detecção de borda de Sobel para determinar os pontos candidatos a manchas solares. Depois da detecção de pontos candidatos, o método de \citecustom{zharkov2005} utilizou binarização e filtragem morfológica para segmentação das manchas solares obtendo uma alta correlação com os dados do NOAA. \citecustom{colak2007} discutiram a classificação automática das manchas solares em tempo real para previsão de atividade solar. Outra abordagem proposta por \citecustom{curto2008}, utilizando imagens do observatório de Ebro, apresentou uma técnica utilizando morfologia matemática na tentativa de detectar todo o perímetro de padrões, às vezes amorfos, das manchas solares.
-
-\begin{figure}[h]
-    \begin{center}
-        \includegraphics[width=0.9\textwidth]{sunspot.png}
-        \caption{Imagem ampliada de uma região solar ativa.}
-        \label{fig:sunspot}
-    \end{center}
-\end{figure}
 
 \section{VISÃO COMPUTACIONAL}
 
@@ -291,17 +290,17 @@ Este trabalho utilizará como dados de entrada imagens do instrumento MDI (\texti
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=0.9\textwidth]{mdi_mag.png}
-        \caption{Imagem do Sol em luz branca do telescópio soho instrumento MDI (direita) e o magnetograma (esquerda).}
+        \caption{Imagem do Sol em luz visível do instrumento MDI no telescópio SOHO (direita) e o magnetograma (esquerda).}
         \label{fig:mm}
     \end{center}
 \end{figure}
 
-Para a extração das informações pretendidas para um determinado dia será necessário utilizar o par de imagens da luz visível e do magnetograma. Estas imagens devem ser separadas pelo menor tempo possível, visto que as duas observações não ocorrem no mesmo instante. Na base de imagens do SOHO essas duas observações têm geralmente um intervalo de trinta segundos. A imagem em luz branca será convertida para o formato JPG para ser utilizada nos processos de visão computacional e sua original em formato FITS será utilizada como mídia de informação complementar, pois o formato FITS mantém informações importantes sobre o momento da observação bem como valor absoluto de intensidade dos pixels, diferente do formato JPG que guarda apenas o valor relativo de intensidade dos pixels. O magnetograma também é utilizado como uma mídia auxiliar de informação, delas são extraídos dados dos campos magnéticos das regiões das manchas.
+Para a extração das informações pretendidas para um determinado dia será necessário utilizar o par de imagens da luz visível e do magnetograma. Estas imagens devem ser separadas pelo menor tempo possível, visto que as duas observações não ocorrem no mesmo instante. Na base de imagens do SOHO essas duas observações têm geralmente um intervalo de trinta segundos. A imagem em luz branca será convertida para o formato JPG para ser utilizada nos processos de visão computacional e sua original em formato FITS será utilizada como mídia de informação complementar, pois o formato FITS mantém informações importantes sobre o momento da observação bem como valor absoluto de intensidade dos pixels, diferente do formato JPG que guarda apenas o valor relativo de intensidade dos pixels. O magnetograma também é utilizado como uma mídia auxiliar de informação, dele são extraídos dados dos campos magnéticos das regiões das manchas.
 
 %Será construído um software utilizando a linguagem C++, a biblioteca  OpenCV \cite{opencv} e a biblioteca FitsTool para realizar a leitura do conjunto de imagens e aplicação de um algoritmo utilizando binarização e morfologia matemática como descrito por \cite{curto2008} ajustado para as imagens SOHO. O Software para cada conjunto de imagens extrairá intensidade média de fluxo luminoso do Sol no instante da observação, número de manchas solares, número de grupos de manchas solares, área das manchas solares, brilho médio das manchas solares, temperatura média das manchas solares e intensidade média do campo magnético na região das manchas. Como resultado final o software retornará um vetor com as características extraídas.
 
 Serão extraídos os indicadores usando amostras mensais ao longo de um ciclo solar completo.
-Os indicadores extraídos serão número de wolf, localização das manchas solares, área das manchas solares, intensidade relativa das manchas solares, temperatura da mancha solar,
+Os indicadores extraídos serão número de Wolf, localização das manchas solares, área das manchas solares, intensidade relativa das manchas solares, temperatura da mancha solar,
 campo magnético médio das manchas solares e intensidade central do Sol no instante da observação.
 Serão utilizadas imagens durante o ciclo solar 23 que se estendeu de maio de 1996 até abril de 2008.
 O vetor de características de cada conjunto de imagens será extraído e armazenado em forma de série temporal, sendo a base resultante dividida em quatro partes para a análise.
@@ -314,8 +313,9 @@ As correlações conhecidas entre as características das manchas solares e o campo
 \subsection{Número de Wolf}
 O Número de Wolf é calculado utilizando a equação \ref{eq:wolf}.
 O parametro $K$ representa a constante do observatório, o parâmetro $g$ é a quantidades de grupos e  $s$ representa a quantidade de manchas.
-Esse trabalho utiliza a constante $K$ atribuída ao satélite SOHO que é 1. O parâmetro $g$ é obtido através do algoritmo de detecção de grupos descrito na Figura \ref{fig:grou}.
+Esse trabalho utiliza a constante $K$ atribuída ao satélite SOHO que é 1.
 O parâmetro $s$ é resultante do algoritmos de detecção de manchas solares descrito na Figura \ref{fig:det}.
+O parâmetro $g$ é obtido através do algoritmo de detecção de grupos descrito na Figura \ref{fig:grou}.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
@@ -331,12 +331,12 @@ O algoritmo localiza na imagem JPG em luz branca do disco solar as manchas solar
 Após esse processo é computado o pixel central da mancha e sua referência $x$ e $y$ no mapa do bitmap é convertida para coordenadas heliográficas utilizando as Equações \ref{eq:lat} e \ref{eq:lon}.
 
 \subsection{Intensidade central do Sol}
-A intensidade central do Sol $Ic$, é obtida através da imagem em luz branca do disco solar no formato FITS.
+A intensidade central do Sol, $Ic$, é obtida através da imagem em luz branca do disco solar no formato FITS.
 É realizada uma média simples dos pixels pertencentes ao retângulo $(x-5, y-5),(x+5, y+5)$ onde $x$ e $y$ são as condenadas do centro do disco solar obtidos no cabeçalho do arquivos FITS.
 
 \subsection{Área da mancha solar}
-A área da mancha solar é estimada combinando os dados da localização da mancha solar obtido no algoritmo de deteção de manchas solares mostrado na Figura \ref{fig:det}.
-O calculo de área da mancha solar é realizado pela Equação \ref{eq:area}. O parametro $p$ é o numero de pixels da mancha solar, $\theta$ é o tamanho angular dos pixels em segundos de arco obtido no cabeçalho do arquivo FITS,
+A área da mancha solar é estimada combinando os dados da localização da mancha solar obtidos no algoritmo de deteção de manchas solares mostrado na Figura \ref{fig:det}.
+O cálculo de área da mancha solar é realizado pela Equação \ref{eq:area}. O parametro $p$ é o numero de pixels da mancha solar, $\theta$ é o tamanho angular dos pixels em segundos de arco obtido no cabeçalho do arquivo FITS,
 $d$ é a distância do satélite SOHO ao Sol e $lat$ e $lon$ são respectivamentes a latitude e longitude da mancha solar em coordenadas heliográficas.
 
 \begin{mycapequ} [!ht]
@@ -348,7 +348,7 @@ $d$ é a distância do satélite SOHO ao Sol e $lat$ e $lon$ são respectivamentes a
 \end{mycapequ}
 
 \subsection{Intensidade da mancha solar}
-A intensidade da mancha solar é obtida através da média das intensidades dos pixels da mancha solar lidos do arquivo de imagem do disco solar em luz branca no formato FITS. Essa definição é formalizada na Equação \ref{eq:int} onde $I$ é o conjunto de intensidade dos $p$ pixels que compoem a mancha solar e $Ic$ é a intencidade média do centro do disco solar definido na sessão 4.3.
+A intensidade da mancha solar é obtida através da média das intensidades dos pixels da mancha solar lidos do arquivo de imagem do disco solar em luz branca no formato FITS. Essa definição é formalizada na Equação \ref{eq:int} onde $I_{p}$ é o conjunto de intensidade dos $p$ pixels que compoem a mancha solar e $Ic$ é a intensidade média do centro do disco solar definido na Sessão 4.3.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
@@ -359,13 +359,13 @@ A intensidade da mancha solar é obtida através da média das intensidades dos pix
 \end{mycapequ}
 
 \subsection{Temperatura média da mancha solar}
-Supondo-se que que tanto a fotosfera solar quanto a mancha irradiam como um corpo negro,
+Supondo-se que tanto a fotosfera solar quanto a mancha irradiam como um corpo negro,
 a temperatura média de uma determinada mancha solar é obtida através da Equação \ref{eq:temp}. As constantes $h$ e $K_{b}$ são respectivamente as constantes de Planck e de Boltzmann,
-$T_{c}$ é a temperatura da fotosfera solar, $v = c/\lambda$ é a frequência associada ao comprimento de onda, $\lambda$ de interesse, $f_{i}$ é a intensidade média da mancha dividido pela intensidade central da estrela (Equação \ref{eq:int}) e $c$ é a constante da velocidade da luz no vácuo.
+$T_{c}$ é a temperatura da fotosfera solar (5780K), $v = c/\lambda$ é a frequência associada ao comprimento de onda, $\lambda$, de interesse, $f_{i}$ é a intensidade média da mancha dividida pela intensidade central da estrela (Equação \ref{eq:int}) e $c$ é a constante da velocidade da luz no vácuo.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
-        \mathit{Tm = \frac{hv}{K_{b}} \left [ln\left ( 1 + \frac{e^{\frac{hv}{K_{b}T_{c}}} - 1}{f_{i}} \right ) \right ]^{-1}}
+        \mathit{T_{m} = \frac{hv}{K_{b}} \left [ln\left ( 1 + \frac{e^{\frac{hv}{K_{b}T_{c}}} - 1}{f_{i}} \right ) \right ]^{-1}}
     \end{equation}
     \caption{Temperatura da mancha solar}
     \label{eq:temp}
@@ -419,7 +419,7 @@ uma média de todos os pixels positivos lidos e uma média de todos os pixels nega
 \section{RESULTADOS}
 
 Este trabalho pretende verificar a evolução das relações entre as características das manchas solares durante um ciclo solar completo.
-Para detecção de manchas solares foi utilizado um algoritmo baseado em binarização e morfologia matemática inspirado no método utilizado por \cite{curto2008} adaptado para as imagens do observatório SOHO. Os resultados da detecção de manchas solares foram publicados em 2012 e parte deles pode ser analisada nas Figuras \ref{fig:2001} e \ref{fig:2009} \cite{spagiari2012}.
+Para detecção de manchas solares foi utilizado um algoritmo baseado em binarização e morfologia matemática inspirado no método utilizado por \cite{curto2008} adaptado para as imagens do observatório SOHO. Os resultados da detecção de manchas solares foram publicados em 2012 e são apresentados nas Figuras \ref{fig:2001} e \ref{fig:2009} \cite{spagiari2012}.
 A Figura \ref{fig:2001} compara o resultado de detecção de manchas solares em número de Wolf para o ano de 2001 com os resultados oficiais apresentados pelos institutos NOAA e SIDC.
 A Figura \ref{fig:2009} faz a mesma comparação para o ano de 2009.
 Os anos de 2001 e 2009 foram escolhidos pois representam períodos diferentes de ciclos solares diferentes.
@@ -451,22 +451,22 @@ Isso evidenciou como alternativa factível utilizar o método de segmentação de ma
     \end{center}
 \end{figure}
 
-Parte da produção desse trabalho é um programa chamado sunspot desenvolvido em C++ utilizando as bibliotecas C++ Standard, OpenCV \cite{opencv} e FitsTools.
+Parte da produção desse trabalho é um programa chamado \textit{sunspot} desenvolvido em C++ utilizando as bibliotecas C++ Standard, OpenCV \cite{opencv} e FitsTools.
 O programa implementa os algoritmos e metodologia descrita no capítulo anterior.
 Processando um conjunto de imagens de entrada e gerando uma base de dados com todas as manchas encontradas e suas características.
-Em 2013 \cite{Valio2013} utilizaram o sunspot para extrair os dados de manchas solares a partir de imagens do observatório SOHO das datas descritas na Tabela \ref{table:ex2003}.
+Em 2013 \cite{Valio2013} utilizaram o \textit{sunspot} para extrair os dados de manchas solares a partir de imagens do observatório SOHO das datas descritas na Tabela \ref{table:ex2003}.
 A Tabela \ref{table:re2003} descreve parte dos resultados gerados pelo programa.
 As informações extraídas foram úteis para compor um modelo de detecção de manchas estelares.
 
-O gráfico da Figura \ref{fig:mag} mostra a intensidade e o brilho relativo da mancha solar pelo seu campo magnético médio.
+O gráfico da Figura \ref{fig:mag} mostra a o brilho relativo da mancha solar pelo seu campo magnético médio.
 Nota-se através desse gráfico que existe uma tendência de as manchas mais escuras terem um campo magnético mais forte, indo ao encontro dos resultados obtidos por \citecustom{Kopp1992}.
 Já na Figura \ref{fig:area} nota-se uma anticorrelação entre a área da mancha solar e seu brilho relativo. Quanto maior a mancha solar mais escura ela se apresenta.
 %Essa mesma relação aparece no gráfico \ref{fig:tempxarea} que mostra a disperção das manchas solares em função da temperatura e da área.
-A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada na Figura \ref{fig:tempxarea} em função da área das mesma evidencianto que manchas maiores são mais frias. A Figura \ref{fig:bxtemp} aponta para uma relação entre temperatura e o campo magnético, onde manchas mais frias possuem campos magnéticos mais fortes. Baseado nas ultimas duas analises podemos supor que manchas maiores tem campos magnéticos maiores e a Figura \ref{fig:bxarea} indica que está suposição está correta.
+A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada na Figura \ref{fig:tempxarea} em função da área das mesma evidenciando que manchas maiores são mais frias. A Figura \ref{fig:bxtemp} aponta para uma relação entre temperatura e o campo magnético, onde manchas mais frias possuem campos magnéticos mais fortes. Baseado nas últimas duas análises podemos supor que manchas maiores têm campos magnéticos mais intensos como indicado pela Figura \ref{fig:bxarea}.
 
 \begin{table} [!htbp]
     \begin{center}
-        \caption{Imagens analisadas pelo programa sunspot base.}
+        \caption{Imagens analisadas pelo programa \textit{sunspot} base.}
         \label{table:ex2003}
         \begin{tabular}{ | l | l | }
             \hline
@@ -490,11 +490,11 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
 
 \begin{table} [!htbp]
     \begin{center}
-        \caption{Parte dos dados extraídos pelo programa sunspot com base na imagem da Tabela \ref{table:ex2003}}
+        \caption{Parte dos dados extraídos pelo programa \textit{sunspot} com base na imagem da Tabela \ref{table:ex2003}}
         \label{table:re2003}
         \begin{tabular}{ | l | l | l | l | l | l | l | }
             \hline
-            \textbf{ID} & \textbf{Lat} & \textbf{Lon} & \textbf{Área Mancha} & \textbf{Contraste} & \textbf{CM Médio} & \textbf{Brilho Sol Médio} \\ \hline
+            \textbf{ID} & \textbf{Lat} & \textbf{Lon} & \textbf{Área Mancha ($m^2$)} & \textbf{Contraste} & \textbf{CM Médio ($G$)} & \textbf{Brilho Sol Médio} \\ \hline
             \hline
             00 & -20,987 & 24,306 & 1,47E+08 & 0,7643 & 5,7452 & 14315 \\ \hline
             01 & 4,616 & -14,257 & 1,48E+07 & 0,9515 & -23,9256 & 14315 \\ \hline
@@ -517,7 +517,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
         \begin{tikzpicture}[node distance=6cm, auto]
             \input avg_magxrint.tex
         \end{tikzpicture}
-        \caption{Gráfico do brilho relativo da manchas solar pelo campo magnético médio da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latídude e longitude entre -40\degree e 40\degree}.
+        \caption{Gráfico do brilho relativo das manchas solar pelo campo magnético médio das mancha solares. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latidude e longitude entre -40\degree e 40\degree}.
         \label{fig:mag}
     \end{center}
 \end{figure}
@@ -527,7 +527,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
         \begin{tikzpicture}[node distance=6cm, auto]
             \input areaxint.tex
         \end{tikzpicture}
-        \caption{Gráfico do brilho relativo da manchas solar pela área da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latídude e longitude entre -40\degree e 40\degree}.
+        \caption{Gráfico do brilho relativo das manchas solares pela área da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latidude e longitude entre -40\degree e 40\degree}.
         \label{fig:area}
     \end{center}
 \end{figure}
@@ -537,7 +537,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
         \begin{tikzpicture}[node distance=6cm, auto]
             \input tempxarea.tex
         \end{tikzpicture}
-        \caption{Gráfico da temperatura da manchas solar pela área da mancha solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latídude e longitude entre -40\degree e 40\degree}.
+        \caption{Gráfico da temperatura das manchas solar pela área das mancha solares. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latidude e longitude entre -40\degree e 40\degree}.
         \label{fig:tempxarea}
     \end{center}
 \end{figure}
@@ -557,7 +557,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
         \begin{tikzpicture}[node distance=6cm, auto]
             \input bxtemp.tex
         \end{tikzpicture}
-        \caption{Gráfico do campo magnetico absoluto pela temperatura da manchas solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latídude e longitude entre -40\degree e 40\degree}.
+        \caption{Gráfico do campo magnetico absoluto pela temperatura das manchas solares. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latidude e longitude entre -40\degree e 40\degree}.
         \label{fig:bxtemp}
     \end{center}
 \end{figure}
@@ -567,7 +567,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
         \begin{tikzpicture}[node distance=6cm, auto]
             \input bxarea.tex
         \end{tikzpicture}
-        \caption{Gráfico do campo magnetico absoluto pela área da manchas solar. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latídude e longitude entre -40\degree e 40\degree}.
+        \caption{Gráfico do campo magnetico absoluto pela área das manchas solares. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latidude e longitude entre -40\degree e 40\degree}.
         \label{fig:bxarea}
     \end{center}
 \end{figure}
@@ -583,10 +583,10 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
             \multicolumn{2}{|c||}{Redação da dissertação}                       &       &       &X       &X       &X       & X     \\ \hline
             \multicolumn{2}{|c||}{Obtenção das Imagens do ciclo 23}             &       &       &X       &X       &X       &      \\ \hline
             \multicolumn{2}{|c||}{Elaboração apresentação de qualificação}      &       &       &X       &       &       &      \\ \hline
-            \multicolumn{2}{|c||}{Preparacao dos dados para o experimento}      &       &       &       &       &       &X      \\ \hline
+            \multicolumn{2}{|c||}{Preparação dos dados do ciclo 23}      &       &       &       &       &       &X      \\ \hline
             \multicolumn{2}{|c||}{\multirow{2}{*}{\textit{\textbf{Atividade}}}} & \multicolumn{6}{|c|}{\textit{\textbf{2016}}} \\ \cline{3-8}
             \multicolumn{2}{|l||}{\textit{\textbf{}}}                           & Jul   & Ago   & Set   & Out   & Nov   & Dez  \\ \hline
-            \multicolumn{2}{|c||}{Preparacao dos dados para o experimento}      & X     &       &       &       &       &      \\ \hline
+            \multicolumn{2}{|c||}{Preparação dos dados do ciclo 23}      & X     &       &       &       &       &      \\ \hline
             \multicolumn{2}{|c||}{Testes e correções}                           &       & X     & X     &       &       &      \\ \hline
             \multicolumn{2}{|c||}{Criação da base indicadores}                  &       & X     &       &       &       &      \\ \hline
             \multicolumn{2}{|c||}{Análise dos resultados}                       &       & X     & X     &       &       &      \\ \hline

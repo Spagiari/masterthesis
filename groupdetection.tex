@@ -1,7 +1,7 @@
     % Place nodes
     \node [block] (init) {Início};
     \node [block, right of=init] (re_cen) {Ler posição do centro do sol};
-    \node [block, below of=init] (re_rad) {Ler comprimento raio do sol};
+    \node [block, below of=init] (re_rad) {Ler raio do sol};
     \node [block, right of=re_rad] (bl_dec) {Detectar as manchas (detecção de blob)};
     \node [block, below of=re_rad] (ch_cal) {Calcular coordenadas heliograficas das manchas detectadas};
     \node [block, right of=ch_cal] (gr_dec) {Calcular distância entre as manchas solares};
