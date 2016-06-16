@@ -88,7 +88,7 @@ Fenômenos relacionados à atividade solar podem causar desde interferências nas c
 
 São conhecidas algumas correlações entre as características físicas das manchas solares e o campo magnético.
 Em 1992 observou-se uma relação não linear entre o campo magnético e o brilho da mancha solar.
-Trabalhos mais recentes de 2012 e 2013 apontaram uma relação entre a intensidade do campo magnético e a área da mancha solar. Também foi investigado a evolução das características das manchas solares ao longo do tempo.
+Trabalhos mais recentes apontaram uma relação entre a intensidade do campo magnético e a área da mancha solar. Também foi investigada a evolução das características das manchas solares ao longo do tempo.
 
 Esse trabalho analisará as características das manchas solares durante o ciclo solar vinte e três utilizando técnicas de visão computacional.
 As imagens do telescópio espacial SOHO (\textit{Solar and Heliospheric Observatory}) serão utilizadas no processo de detecção das manchas solares e da extração de suas características.
@@ -139,7 +139,7 @@ A atividade solar envolve os mais energéticos fenômenos do Sistema Solar. O Sol 
 
 O campo magnético solar influi diretamente na atividade solar, em períodos de baixa atividade as linhas de campo magnético solar apresentam a configuração de um dipolo e a distribuição dos campos magnéticos é mais homogênea em toda superfície solar. Porém em períodos de máxima atividade os campos magnéticos ficam desordenados rearranjando-se localmente, formando regiões com altas concentrações de campo magnético que potencialmente podem liberar energia. Essas concentrações de campo magnético afetam o fluxo convectivo do plasma logo abaixo da fotosfera, camada visível mais baixa da atmosfera solar. Como o plasma tem o seu ciclo de convecção interrompido a atmosfera solar não é eficientemente aquecida, assim o plasma confinado na fotosfera pelos campos magnéticos presentes na região formam manchas escuras no disco solar. As regiões são escuras seguindo a lei de Stefan-Boltzmann onde o fluxo radiante de um corpo é descrito em função da temperatura do corpo, logo as regiões mais frias se apresentam menos brilhantes. As manchas solares geralmente apresentam duas regiões, uma região central mais escura e uma periférica mais clara denominadas umbra e penumbra \cite{Hathaway1994}. Como pode ser visto na Figura \ref{fig:sunspot}.
 
-A observação contínua das manchas solares comprovou que o Sol possui rotação diferencial, sendo que a região do equador solar gira um pouco mais rápido que os pólos. Essa peculiar forma de rotação do Sol causa lentamente a torção das linhas de campo magnético até o ponto onde as configurações originais não se sustentam e os rearranjos de campos magnéticos acontecem, causando assim o ciclo de atividade solar de aproximadamente onze anos. O ciclo solar de onze anos marca a inversão dos pólos magnéticos norte e sul solar, portanto a cada dois ciclos de onze anos os pólos magnéticos solares voltam a sua configuração original. Formando um ciclo magnético de vinte e dois anos \cite{Babcock1961}. Na Figura \ref{fig:sc} pode-se ver claramente o ciclo de onze anos através da média diária da área das manchas solares.
+A observação contínua das manchas solares comprovou que o Sol possui rotação diferencial, sendo que a região do equador solar gira um pouco mais rápido que os pólos. Essa peculiar forma de rotação do Sol causa lentamente a torção das linhas de campo magnético até o ponto onde as configurações originais não se sustentam e os rearranjos de campos magnéticos acontecem, causando assim o ciclo de atividade solar de aproximadamente onze anos. O ciclo solar de onze anos marca a inversão dos pólos magnéticos norte e sul solar, portanto a cada dois ciclos de onze anos os pólos magnéticos solares voltam a sua configuração original, formando um ciclo. Formando um ciclo magnético de vinte e dois anos \cite{Babcock1961}. Na Figura \ref{fig:sc} pode-se ver claramente o ciclo de onze anos através da média diária da área das manchas solares.
 
 O número de manchas solares é o índice mais utilizado no estudo de longo prazo da atividade solar. Rudolf Wolf em 1961 definiu o número relativo de manchas solares, como sendo $R = k(10g + s)$ onde, $g$ é o número de grupos de manchas solares, $s$ é o número total de pontos em todos os grupos no disco visível, e $k$ é um fator de correção de equipamento de observação \cite{Hathaway2015, svalgaard2010}. O índice de número de manchas solares normaliza a observação das manchas solares diminuindo os erros de observação e diferenças de resolução nos equipamentos óticos. Para tanto o número de Wolf impõe um peso maior aos grupos de manchas solares, pois manchas próximas potencialmente compartilham os mesmos campos magnéticos fazendo parte da mesma região ativa \cite{Hathaway2015}.
 
@@ -169,7 +169,7 @@ Nos últimos anos algumas técnicas de visão computacional foram aplicadas ao prob
 \section{VISÃO COMPUTACIONAL}
 
 \subsubsection{Binarização}
-A Binarização é uma técnica de transformação de intesidade dos pixels baseada na vizinhança minima, a vizinhança minima de um pixels compreende apenas o próprio pixel. O objetivo da binarização é converter uma imagem em níveis de cinza em uma imagem preto e branco. Cada pixel da imagem tem sua intensidade modificada através de uma função de mapemento $T(r)$ conforme pode ser visto na equação \ref{eq:map} onde $r$ é a intensidade do pixel e $s$ é a nova intensidade. A função $T(r)$ representa uma função degrau como pode ser visto na imagem \ref{fig:thr} onde $k$ é o parametro de corte, intensidades menores que $k$ serão transformadas em preto e intensidades maiores e iguais a $k$ serão transformadas em branco \cite{gonzalez2010}.
+A Binarização é uma técnica de transformação de intesidade dos pixels baseada na vizinhança minima, a vizinhança minima de um pixels compreende apenas o próprio pixel. O objetivo da binarização é converter uma imagem em níveis de cinza em uma imagem preto e branco. Cada pixel da imagem tem sua intensidade modificada através de uma função de mapemento $T(r)$ conforme pode ser visto na equação \ref{eq:map} onde $r$ é a intensidade do pixel e $s$ é a nova intensidade. A função $T(r)$ representa uma função degrau como pode ser visto na imagem \ref{fig:thr} onde $k$ é o parâmetro de corte, intensidades menores que $k$ serão transformadas em preto e intensidades maiores e iguais a $k$ serão transformadas em branco \cite{gonzalez2010}.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
@@ -212,7 +212,7 @@ A morfologia matemática se baseia nas seguintes operações.
 
 \paragraph{Erosão}
 
-Sendo uma imagem bidimensional definida pelo conjunto de pixels $A$ e um elemento estruturante $B$ ambos conjuntos de $Z^{2}$. A erosão é o conjunto de pixels da imagem que satizfazem a equação \ref{eq:ero}. Dessa forma a erosão de $A$ por $B$ é o conjunto de todos os pixels em $z$ sendo que $B$ transladado por $z$ está contido em $A$. Em outras palavras sendo $A$ e $B$ matrizes a operação de erosão é a convolução de $B$ em $A$ onde a erosão de um pixel $(x,y)$ é valor mínimo dentre seus vizinhos que pertencem ao elemento estruturante $B$ fazendo com que padrões da imagem que não atendam o padrão imposto pelo elemento estruturante sejam diminuídos. A imagem \ref{fig:erosao} mostra um exemplo da operação de erosão sobre uma imagem de uma conexão wire-bond. \cite{gonzalez2010}.
+Sendo uma imagem bidimensional definida pelo conjunto de pixels $A$ e um elemento estruturante $B$ ambos conjuntos de $Z^{2}$. A erosão é o conjunto de pixels da imagem que satisfazem a equação \ref{eq:ero}. Dessa forma a erosão de $A$ por $B$ é o conjunto de todos os pixels em $z$ sendo que $B$ transladado por $z$ está contido em $A$. Em outras palavras sendo $A$ e $B$ matrizes a operação de erosão é a convolução de $B$ em $A$ onde a erosão de um pixel $(x,y)$ é valor mínimo dentre seus vizinhos que pertencem ao elemento estruturante $B$ fazendo com que padrões da imagem que não atendam ao padrão imposto pelo elemento estruturante sejam diminuídos. A imagem da Figura \ref{fig:erosao} mostra um exemplo da operação de erosão sobre uma imagem de uma conexão wire-bond. \cite{gonzalez2010}.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
@@ -232,7 +232,7 @@ Sendo uma imagem bidimensional definida pelo conjunto de pixels $A$ e um element
 
 \paragraph{Dilatação}
 
-Sendo uma imagem bidimensional definida pelo conjunto de pixels $A$ e um elemento estruturante $B$ ambos conjuntos de $Z^{2}$. A dilatação é o conjunto de pixels da imagem que satizfazem a equação \ref{eq:dil}. Dessa forma a erosão de $A$ por $B$ é o conjunto de todos os pixels em $z$ sendo que a relexão de $B$ transladado por $z$ tenham pelo menos um pixel contido em $A$. Em outras palavras sendo $A$ e $B$ matrizes a operação de dilatação é a convolução de $B$ em $A$ onde a dilatação de um pixel $(x,y)$ é valor maximo dentre seus vizinhos que pertencem ao elemento estruturante $B$ fazendo com que padrões da imagem que não atendam o padrão imposto pelo elemento estruturante sejam expandidos. A imagem \ref{fig:dilatacao} mostra um exemplo da operação de dilatação sobre uma imagem contento um texto em baixa dilatação \cite{gonzalez2010}.
+Sendo uma imagem bidimensional definida pelo conjunto de pixels $A$ e um elemento estruturante $B$ ambos conjuntos de $Z^{2}$. A dilatação é o conjunto de pixels da imagem que satisfazem a equação \ref{eq:dil}. Dessa forma a erosão de $A$ por $B$ é o conjunto de todos os pixels em $z$ sendo que a reflexão de $B$ traneladado por $z$ tenham pelo menos um pixel contido em $A$. Em outras palavras sendo $A$ e $B$ matrizes a operação de dilatação é a convolução de $B$ em $A$ onde a dilatação de um pixel $(x,y)$ é valor máximo dentre seus vizinhos que pertencem ao elemento estruturante $B$ fazendo com que padrões da imagem que não atendam ao padrão imposto pelo elemento estruturante sejam expandidos. A imagem da Figura \ref{fig:dilatacao} mostra um exemplo da operação de dilatação sobre uma imagem contento um texto em baixa dilatação \cite{gonzalez2010}.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
@@ -245,13 +245,13 @@ Sendo uma imagem bidimensional definida pelo conjunto de pixels $A$ e um element
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=6cm, height=5cm]{dilatacao.png}
-        \caption{Exemplo de dilatação. (a) Imagem original. (b) Elemento estruturante. (c) Dilatacaão de a por b, é possivel observar na imagem ampliada que falhas na imagem original foram preenchidas na imagem dilatada \cite{gonzalez2010}.}
+        \caption{Exemplo de dilatação. (a) Imagem original. (b) Elemento estruturante. (c) Dilatacão da imagem a pelo elemento estruturante b. Observa-se na imagem dilatada ampliada que falhas na imagem original foram preenchidas \cite{gonzalez2010}.}
         \label{fig:dilatacao}
     \end{center}
 \end{figure}
 
 \paragraph{Abertura}
-Descrita matematicamente pela Equação \ref{eq:abe} é a combinação da operação de erosão seguida da operação de dilatação utilizando o mesmo elemento estruturante. Esta operação resulta na suavização de bordas eliminando saliências finas e rompendo istmos, pois pequenas porções de pixels não compatíveis são suavemente diminuídas para se tornarem compatíveis ao padrão do elemento estruturante. A figura \ref{fig:abrefecha} itens (b), (c), (d) e (e) mostram um exemplo de abertura através de suas operações primitivas erosão segida de dilatação \cite{gonzalez2010}.
+Descrita matematicamente pela Equação \ref{eq:abe} é a combinação da operação de erosão seguida da operação de dilatação utilizando o mesmo elemento estruturante. Esta operação resulta na suavização de bordas eliminando saliências finas e rompendo istmos, pois pequenas porções de pixels não compatíveis são suavemente diminuídas para se tornarem compatíveis ao padrão do elemento estruturante. Os painéis (b), (c), (d) e (e) da Figura \ref{fig:abrefecha} mostram um exemplo de abertura através de suas operações primitivas erosão seguida de dilatação \cite{gonzalez2010}.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
@@ -264,13 +264,13 @@ Descrita matematicamente pela Equação \ref{eq:abe} é a combinação da operação de
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=6cm, height=8cm]{abrefecha.png}
-        \caption{Exemplo de abertura e fechamento. (a) Imagem original. (b) e (c) exemplo de erosão. (d) e (e) exemplo de abertura. (f) e (g) exeplo de dilatação. (h) e (i) exmplo de fechamento. É possivel observar os passos das operações de abertura e fechamento e observar os efeitos produzidos. O elemento estruturante está representado como um circulo com um ponto no centro \cite{gonzalez2010}.}
+        \caption{Exemplo de abertura e fechamento. (a) Imagem original. (b) e (c) exemplo de erosão. (d) e (e) exemplo de abertura. (f) e (g) exemplo de dilatação. (h) e (i) exemplo de fechamento. É possivel observar os passos das operações de abertura e fechamento e os efeitos produzidos. O elemento estruturante está representado como um circulo com um ponto no centro \cite{gonzalez2010}.}
         \label{fig:abrefecha}
     \end{center}
 \end{figure}
 
 \paragraph{Fechamento}
-Descrito matematicamente pela Equação \ref{eq:fech} combina a operação de dilatação seguida da operação de erosão utilizando o mesmo elemento estruturante. Esta operação resulta no preenchimento de pequenas áreas descontínuas, elimina pequenos buracos e completa pequenas falhas no contorno, pois pequenas porções de pixels não compatíveis são suavemente expandidas para se tornarem compatíveis ao padrão do elemento estruturante. A figura \ref{fig:abrefecha} itens (f), (g), (h) e (i) mostram um exemplo de fechamento através de suas operações primitivas dilatação segida de erosão \cite{gonzalez2010}.
+Descrito matematicamente pela Equação \ref{eq:fech} combina a operação de dilatação seguida da operação de erosão utilizando o mesmo elemento estruturante. Esta operação resulta no preenchimento de pequenas áreas descontínuas, elimina pequenos buracos e completa pequenas falhas no contorno, pois pequenas porções de pixels não compatíveis são suavemente expandidas para se tornarem compatíveis ao padrão do elemento estruturante. Os painéis (f), (g), (h) e (i) da Figura \ref{fig:abrefecha} mostram um exemplo de fechamento através de suas operações primitivas dilatação seguida de erosão \cite{gonzalez2010}.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
@@ -282,7 +282,7 @@ Descrito matematicamente pela Equação \ref{eq:fech} combina a operação de dilata
 
 \paragraph{Transformadas top-hat e bottom-hat}
 
-São a combinação de subtração de imagem com as operações de abertura e fechamento. Geralmente são utilizadas na remoção de estruturas que se destacam de seu fundo com base no elemento estruturante. A top-hat atua sobre estruturas claras com fundo escuro, enquanto a bottom-hat atua sobre estruturas escuras com fundo claro. As Equações \ref{eq:th} e \ref{eq:bh} descrevem matematicamente as transformadas top-hat e bottom-hat respectivamente. As figuras \ref{fig:top} e \ref{fig:black} mostram exemplos da aplicação da transformada top-hat e bottom-hat espectivamente. \cite{gonzalez2010}.
+São a combinação de subtração de imagem com as operações de abertura e fechamento. Geralmente são utilizadas na remoção de estruturas que se destacam de seu fundo com base no elemento estruturante. A top-hat atua sobre estruturas claras com fundo escuro, enquanto a bottom-hat atua sobre estruturas escuras com fundo claro. As Equações \ref{eq:th} e \ref{eq:bh} descrevem matematicamente as transformadas top-hat e bottom-hat respectivamente. As Figuras \ref{fig:top} e \ref{fig:black} mostram exemplos da aplicação da transformada top-hat e bottom-hat respectivamente \cite{gonzalez2010}.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
@@ -317,7 +317,7 @@ São a combinação de subtração de imagem com as operações de abertura e fechament
 \end{figure}
 \subsubsection{Coordenadas heliográficas}
 
-A coordenada heliográfica é um sistema de coordenadas que descreve a posição de qualquer ponto da esfera solar utilizando latitude e longitude expressas em graus. Observando imagens do disco solar no contexto de visão computacional um ponto qualquer do disco solar é expresso em coordenadas x e y que podem ser convertidos para coordenadas heliográficas onde a latitude é obtida pela Equação \ref{eq:lat} e a longitude pela Equação \ref{eq:lon}, onde $x$ e $y$ são as coordenadas da imagem e $r$ é o raio solar em pixels \cite{Thompson2002}.
+O sistema de coordenadas heliográficas descreve a posição de qualquer ponto da esfera solar utilizando latitude e longitude expressas em graus. Observando imagens do disco solar no contexto de visão computacional um ponto qualquer do disco solar é expresso em coordenadas x e y que podem ser convertidos para coordenadas heliográficas onde a latitude é obtida pela Equação \ref{eq:lat} e a longitude pela Equação \ref{eq:lon}, onde $x$ e $y$ são as coordenadas da imagem e $r$ é o raio solar em pixels \cite{Thompson2002}.
 
 Para a determinação dos grupos de manchas solares pode ser utilizado o critério de distância, pois a característica de proximidade espacial é um atributo físico compartilhado por manchas solares da mesma região ativa. Sendo assim é aceito e comprovado por amostras estatísticas que manchas com até 6 graus de distância umas das outras fazem parte do mesmo grupo \cite{curto2008}. A Equação \ref{eq:dis} apresenta um método para se mensurar a distância de dois pontos conhecidos em coordenadas heliográficas. Onde Lat1 e Lon1 são as coordenadas heliográficas do ponto 1 e Lat2 e Lon2 são as coordenadas heliográficas do ponto 2.
 
@@ -346,7 +346,7 @@ Este trabalho utilizará como dados de entrada imagens do instrumento MDI (\texti
 \begin{figure}[h]
     \begin{center}
         \includegraphics[width=0.9\textwidth]{mdi_mag.png}
-        \caption{Imagem do Sol em luz visível do instrumento MDI no telescópio SOHO (direita) e o magnetograma (esquerda).}
+        \caption{Imagem do Sol em luz visível do instrumento MDI no telescópio SOHO (esquerda) e o magnetograma (direita).}
         \label{fig:mm}
     \end{center}
 \end{figure}
@@ -384,27 +384,27 @@ O parâmetro $g$ é obtido através do algoritmo de detecção de grupos descrito na 
 \subsection{Localização da mancha solar}
 A localização das manchas solares é resultado do algoritmo de detecção de manchas solares descrito na Figura \ref{fig:det}.
 O algoritmo localiza na imagem JPG em luz branca do disco solar as manchas solares e todos os pixels que as compõem utilizando o algoritmo de detecção de blob crescimento de região \cite{gonzalez2010}.
-Após esse processo é computado o pixel central da mancha atráves do calculo de seu centro de massa \cite{gonzalez2010}. A a coordenada central $x$ e $y$ no mapa do bitmap é convertida para coordenadas heliográficas utilizando as Equações \ref{eq:lat} e \ref{eq:lon}.
+Após esse processo é computado o pixel central da mancha atráves do cálculo de seu centro de massa \cite{gonzalez2010}. A a coordenada central $x$ e $y$ no mapa do bitmap é convertida para coordenadas heliográficas utilizando as Equações \ref{eq:lat} e \ref{eq:lon}.
 
 \subsection{Intensidade central do Sol}
-A intensidade central do Sol, $Ic$, é obtida através da imagem em luz branca do disco solar no formato FITS.
+A intensidade do centro do Sol, $Ic$, é obtida através da imagem em luz branca do disco solar no formato FITS.
 É realizada uma média simples dos pixels pertencentes ao retângulo $(x-5, y-5),(x+5, y+5)$ onde $x$ e $y$ são as condenadas do centro do disco solar obtidos no cabeçalho do arquivos FITS.
 
 \subsection{Área da mancha solar}
 A área da mancha solar é estimada combinando os dados da localização da mancha solar obtidos no algoritmo de deteção de manchas solares mostrado na Figura \ref{fig:det}.
-O cálculo de área da mancha solar é realizado pela Equação \ref{eq:area}. O parametro $p$ é o numero de pixels da mancha solar, $\theta$ é o tamanho angular dos pixels em segundos de arco obtido no cabeçalho do arquivo FITS,
+O cálculo de área da mancha solar é realizado pela Equação \ref{eq:area}. O parâmetro $p$ é o numero de pixels da mancha solar, $\theta$ é o tamanho angular dos pixels em segundos de arco obtido no cabeçalho do arquivo FITS,
 $d$ é a distância do satélite SOHO ao Sol e $lat$ e $lon$ são respectivamentes a latitude e longitude da mancha solar em coordenadas heliográficas.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
-        \mathit{s = p\left (\frac{\frac{\theta}{3600}\frac{\pi}{180}}{cos(lat)cos(lon)} \right)d}
-    \end{equation}
-    \caption{Área da mancha solar}
-    \label{eq:area}
+    \mathit{s = p\left (\frac{\frac{\theta}{3600}\frac{\pi}{180}}{cos(lat)cos(lon)} \right)d}
+\end{equation}
+\caption{Área da mancha solar}
+\label{eq:area}
 \end{mycapequ}
 
 \subsection{Intensidade da mancha solar}
-A intensidade da mancha solar é obtida através da média das intensidades dos pixels da mancha solar lidos do arquivo de imagem do disco solar em luz branca no formato FITS. Essa definição é formalizada na Equação \ref{eq:int} onde $I_{p}$ é o conjunto de intensidade dos $p$ pixels que compôem a mancha solar e $Ic$ é a intensidade média do centro do disco solar definido na Sessão 4.3.
+A intensidade da mancha solar é obtida através da média das intensidades dos pixels da mancha solar lidos do arquivo de imagem do disco solar em luz branca no formato FITS. Essa definição é formalizada na Equação \ref{eq:int} onde $I_{p}$ é o conjunto de intensidade dos $p$ pixels que compôem a mancha solar e $Ic$ é a intensidade média do centro do disco solar definido na Sessão 5.3.
 
 \begin{mycapequ} [!ht]
     \begin{equation}
@@ -480,7 +480,7 @@ A Figura \ref{fig:2001} compara o resultado de detecção de manchas solares em nú
 A Figura \ref{fig:2009} faz a mesma comparação para o ano de 2009.
 Os anos de 2001 e 2009 foram escolhidos pois representam períodos diferentes de ciclos solares diferentes.
 O ano de 2009 representa um período com baixa incidência de manchas solares e o ano de 2001 representa o período de transição para o período de máxima atividade solar.
-É importante para os resultados desse trabalho que o algoritmo tenha aplicabilidade robusta no decorrer de todo o ciclo solar. Pode se notar através da figura \ref{fig:2009} que a metodologia de detecção apresentada por esse trabalho apresenta apresenta falsos positivos em comparação com indicadores oficiais em periodos de baixa atividade solar.
+É importante para os resultados desse trabalho que o algoritmo tenha aplicabilidade robusta no decorrer de todo o ciclo solar. Pode-se notar através da Figura \ref{fig:2009} que a metodologia de detecção apresentada por esse trabalho apresenta apresenta falsos positivos em comparação com indicadores oficiais em períodos de baixa atividade solar.
 
 \begin{figure}[!htbp]
     \begin{center}
@@ -562,8 +562,8 @@ As informações extraídas foram úteis para compor um modelo de detecção de mancha
     \end{center}
 \end{table}
 
-O gráfico da Figura \ref{fig:mag} mostra a brilho relativo da mancha solar pelo seu campo magnético médio.
-Nota-se através desse gráfico que existe uma tendência das manchas mais escuras terem um campo magnético mais forte, indo ao encontro dos resultados obtidos por \citecustom{Kopp1992}.
+O gráfico da Figura \ref{fig:mag} mostra o brilho relativo da mancha solar pelo seu campo magnético médio.
+Nota-se deste gráfico que existe uma tendência das manchas mais escuras terem um campo magnético mais forte, indo ao encontro dos resultados obtidos por \citecustom{Kopp1992}.
 Já na Figura \ref{fig:area} nota-se uma anticorrelação entre a área da mancha solar e seu brilho relativo. Quanto maior a mancha solar mais escura ela se apresenta.
 %Essa mesma relação aparece no gráfico \ref{fig:tempxarea} que mostra a disperção das manchas solares em função da temperatura e da área.
 A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada na Figura \ref{fig:tempxarea} em função da área das mesma evidenciando que manchas maiores são mais frias. A Figura \ref{fig:bxtemp} aponta para uma relação entre temperatura e o campo magnético, onde manchas mais frias possuem campos magnéticos mais fortes. Baseado nas últimas duas análises podemos supor que manchas maiores têm campos magnéticos mais intensos como indicado pela Figura \ref{fig:bxarea}.
@@ -614,7 +614,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
         \begin{tikzpicture}[node distance=6cm, auto]
             \input bxtemp.tex
         \end{tikzpicture}
-        \caption{Gráfico do campo magnetico absoluto pela temperatura das manchas solares. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latidude e longitude entre -40\degree e 40\degree}.
+        \caption{Gráfico do campo magnético absoluto pela temperatura das manchas solares. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latidude e longitude entre -40\degree e 40\degree}.
         \label{fig:bxtemp}
     \end{center}
 \end{figure}
@@ -624,7 +624,7 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
         \begin{tikzpicture}[node distance=6cm, auto]
             \input bxarea.tex
         \end{tikzpicture}
-        \caption{Gráfico do campo magnetico absoluto pela área das manchas solares. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latidude e longitude entre -40\degree e 40\degree}.
+        \caption{Gráfico do campo magnético absoluto pela área das manchas solares. Os dados são baseados em uma amostra de imagens ao decorrer do ano de 2003 e as manchas analisadas têm latidude e longitude entre -40\degree e 40\degree}.
         \label{fig:bxarea}
     \end{center}
 \end{figure}
@@ -632,9 +632,9 @@ A temperatura das manchas determinada pela Equação \ref{eq:temp} está mostrada n
 
 \section{PRÓXIMOS PASSOS}
 
-Como sequência das atividades desse trabalho será desenvolvido um filtro para eliminar os falsos positivs em periodos de baixa atividade solar. Como parte da produção principal desse trabalho as analises realizadas para o ano de 2003 mostrada na sessão de resultados seram extendidas para todo o periodo que compõem o ciclo solar 23. Essas analises terão como objetivo verificar as correlações entre área, intensidade, campo magnético das manchas encontradas por \citecustom{Kopp1992} e \citecustom{Penn2006} e também procurar por outras possíveis correlações. O processo de analise das manchas solares produzirá uma detalhada base de dados contendo informações todas as manchas solares detectadas. Esses dados serão usados para verificar como as propriedades das manchas, tais como, area, intensidade e campo magnético variam ao longo do ciclo magnético.
+Como sequência das atividades desse trabalho será desenvolvido um filtro para eliminar os falsos positivos em períodos de baixa atividade solar. Como parte da produção principal desse trabalho as análises realizadas para o ano de 2003 mostrada na sessão de resultados serão estendidas para todo o período que compõem o ciclo solar 23. Essas análises terão como objetivo verificar as correlações entre área, intensidade, campo magnético das manchas encontradas por \citecustom{Kopp1992} e \citecustom{Penn2006} e também procurar por outras possíveis correlações. O processo de análise das manchas solares produzirá uma detalhada base de dados contendo informações de todas as manchas solares detectadas. Esses dados serão usados para verificar como as propriedades das manchas, tais como, área, intensidade e campo magnético variam ao longo do ciclo magnético.
 
-Espera-se conseguir resultados de contagem de manchas solares e área de manchas solares com alto índice de correlação quando compradado com as fontes oficiais NOAA e SIDC. Espera-se também que os dados gerados tenham qualidade suficiente para verificar as correlações conhecidas entre as propriedades das manchas solares. Por final esperamos encontrar indícios de variações das propriedades das manchas solares ao longo do ciclo magnético que possam ajudar a revelar algum detalhe sobre o funcionamento do ciclo magnético ou sobre o comportamento do comportamento dos ciclos magnéticos solares.
+Espera-se conseguir resultados de contagem de manchas solares e área de manchas solares com alto índice de correlação quando compradados com as fontes oficiais NOAA e SIDC. Espera-se também que os dados gerados tenham qualidade suficiente para verificar as correlações conhecidas entre as propriedades das manchas solares. Por final esperamos encontrar indícios de variações das propriedades das manchas solares ao longo do ciclo magnético que possam ajudar a revelar algum detalhe sobre o funcionamento do ciclo magnético ou sobre o comportamento do comportamento dos ciclos magnéticos solares.
 
 
 \section{CRONOGRAMA}
@@ -644,23 +644,16 @@ Espera-se conseguir resultados de contagem de manchas solares e área de manchas 
         \begin{tabular}{|c|l|c|c|c|c|c|c|}
             \hline
             \multicolumn{2}{|c||}{\multirow{2}{*}{\textit{\textbf{Atividade}}}} & \multicolumn{6}{|c|}{\textit{\textbf{2016}}} \\ \cline{3-8}
-            \multicolumn{2}{|l||}{\textit{\textbf{}}}                           & Jan   & Fev   & Mar   & Abr   & Mai   & Jun  \\ \hline
-            \multicolumn{2}{|c||}{Redação da dissertação}                       &       &       &X       &X       &X       & X     \\ \hline
-            \multicolumn{2}{|c||}{Obtenção das Imagens do ciclo 23}             &       &       &X       &X       &X       &      \\ \hline
-            \multicolumn{2}{|c||}{Elaboração apresentação de qualificação}      &       &       &X       &       &       &      \\ \hline
-            \multicolumn{2}{|c||}{Preparação dos dados do ciclo 23}      &       &       &       &       &       &X      \\ \hline
-            \multicolumn{2}{|c||}{\multirow{2}{*}{\textit{\textbf{Atividade}}}} & \multicolumn{6}{|c|}{\textit{\textbf{2016}}} \\ \cline{3-8}
             \multicolumn{2}{|l||}{\textit{\textbf{}}}                           & Jul   & Ago   & Set   & Out   & Nov   & Dez  \\ \hline
             \multicolumn{2}{|c||}{Preparação dos dados do ciclo 23}      & X     &       &       &       &       &      \\ \hline
             \multicolumn{2}{|c||}{Testes e correções}                           &       & X     & X     &       &       &      \\ \hline
             \multicolumn{2}{|c||}{Criação da base indicadores}                  &       & X     &       &       &       &      \\ \hline
             \multicolumn{2}{|c||}{Análise dos resultados}                       &       & X     & X     &       &       &      \\ \hline
             \multicolumn{2}{|c||}{Ajustes indicados na qualificação}            & X     & X     & X     &       &       &     \\ \hline
-            \multicolumn{2}{|c||}{Elaboração da apresentação de defesa}         &       &       & X     & X     &       &     \\ \hline
             \multicolumn{2}{|c||}{Redação da dissertação}                       & X     & X     & X     & X     &       &      \\ \hline
+            \multicolumn{2}{|c||}{Elaboração da apresentação de defesa}         &       &       & X     & X     &       &     \\ \hline
         \end{tabular}
     \end{table}
-
 \end{center}
 
 \def\refname{REFERÊNCIAS BIBLIOGRÁFICAS}
